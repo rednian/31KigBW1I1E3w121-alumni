@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="container" style="min-height: 500px;">
+
             <div class="row">
                 <div class="col-xs-2 s-pad">
                     <div class="bg-white admin-left-pane" style="padding:0 15px;">
