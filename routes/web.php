@@ -15,6 +15,7 @@
 //    return view('welcome');
 //});
 
-Route::get('/','Admin\HomeController@index');
+//Route::get('/','Admin\HomeController@index');
 
 Route::get('/admin','Admin\HomeController@index');
+Route::resource('/admin/account','Admin\AccountController');

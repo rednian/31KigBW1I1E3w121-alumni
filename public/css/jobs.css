@@ -1,0 +1,94 @@
+.p-head {
+	padding: 16px;
+	position: relative;
+	margin-bottom: 6px;
+}
+
+.p-top {
+	padding-right: 10px;
+	overflow: hidden;
+}
+
+.p-top h3 {
+	padding:0;
+	margin:0;
+	font-family: Arial, sans-serif;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.p-top img {
+	width: 24px;
+}
+
+.p-mid {
+	display: block;
+	overflow: hidden;
+}
+
+.p-mid h6 {
+	font-size: 14px;
+	margin-right: 5px;
+	margin-bottom: 0px;
+}
+
+.p-mid span {
+	font-size: 12px;
+	color: #999;
+}
+
+.p-bot-right p {
+	line-height: 0;
+	padding-top: 10px;
+
+}
+
+.p-bot {
+	margin-top: 60px;
+	padding-right: 10px;
+}
+
+
+.jobs-list li > img {
+	width: 200px;
+}
+
+.job-details .head h3 {
+	cursor: pointer;
+}
+
+.see-more {
+	padding-top: 15px!important;
+}
+
+.rec-jobs {
+	position: absolute;
+	top:7px;
+	right:0;
+}
+
+.recommended-jobs ul li {
+	margin-bottom: 10px;
+}
+
+.recommended-jobs ul li a {
+	color: #00B2B2;
+}
+
+#companyModal .head > img {
+	width: 150px;
+}
+
+#companyModal .app-btn {
+	background-color: #008C8C;
+	color: #FFFFFF;
+	padding: 10px;
+}
+
+#companyModal .btn-apply {
+	position: absolute;
+	bottom: 15px;
+	right: 25px;
+	font-size: 18px;
+	padding: 10px 25px;
+}

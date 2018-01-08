@@ -1,0 +1,191 @@
+.p-head {
+	padding: 16px;
+	position: relative;
+	margin-bottom: 6px;
+}
+
+.p-top {
+	padding-right: 10px;
+	overflow: hidden;
+}
+
+.p-top h3 {
+	padding:0;
+	margin:0;
+	font-family: Arial, sans-serif;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.p-top img {
+	width: 24px;
+}
+
+.p-mid {
+	display: block;
+	overflow: hidden;
+}
+
+.p-mid h6 {
+	font-size: 16px;
+	margin-right: 5px;
+	margin-bottom: 0px;
+}
+
+.p-mid span {
+	font-size: 12px;
+	color: #999;
+}
+
+.p-bot-right p {
+	line-height: 0;
+	padding-top: 10px;
+
+}
+
+.p-bot {
+	margin-top: 60px;
+	padding-right: 10px;
+}
+
+.personal-info {
+	padding: 0px 16px;
+	background: #FFFFFF;
+	margin-bottom: 6px;
+}
+
+.personal-info .head {
+	padding: 15px 0 13px 0;
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.personal-info .head h6 {
+	color: #888888;
+}
+
+.personal-info .body {
+	padding: 10px 0;
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.personal-info .body ul li {
+	display: inline-block;
+	min-width: 90px;
+	padding:10px 20px 10px 0px;
+	/*padding-right: 24px;*/
+}
+
+.personal-info .body ul li h5, .personal-info .body ul li h6 {
+	margin:0;
+	padding:0;
+}
+
+.personal-info .body ul li h6 {
+	margin-bottom: 3px;
+}
+
+.personal-info .footer {
+	padding: 10px 0;
+	position: relative;
+}
+
+.see-more {
+	position: relative;
+	text-align: center;
+}
+
+.see-more span {
+	padding: 0 10px;
+}
+
+.update-info {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 187px;
+	text-align: right;
+	margin-top: 7px;
+}
+
+.update-info a {
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+.update-info img {
+	width: 20px;
+	margin-right: 5px;
+	margin-top: 2px;
+}
+
+
+/*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: MODALS :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+.modal-head {
+	padding: 0 16px;
+}
+
+.p-infolist li {
+	display: inline-block;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.p-infolist li input[type="text"] {
+	border: 1px solid #EEEEEE;
+	padding-left: 5px
+}
+
+.p-infolist li select {
+	border: 1px solid #EEEEEE;
+	height: 24px;
+	width: 150px;
+	color: #888888;
+	outline: none
+}
+
+.p-infolist textarea {
+	border: 1px solid #EEEEEE;
+	resize: none;
+	height: 70px;
+	width: 234px;
+}
+
+.upload-box {
+	width: 100px;
+	height: 100px;
+	background-color: #BBBBBB;
+	text-align: center;
+	cursor: pointer;
+	/*overflow: hidden;*/
+}
+
+.upload-box p {
+	font-size: 10px;
+	color: #888;
+}
+
+.upload-box i {
+	color: #888;
+	font-size: 32px;
+	margin-top: 33px;
+	margin-bottom: 5px;
+}
+
+.upload-box:hover p, .upload-box:hover i {
+	color: #AAAAAA;
+}
+
+.upload-box:hover {
+	background-color: #DDDDDD;
+}
+
+.upload-box-image img {
+	height: 100px;
+}
+
+.skills-list li {
+	width: 295px;
+	margin-bottom: 0;
+	padding:5px 0!important;
+}

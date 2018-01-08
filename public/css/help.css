@@ -1,0 +1,19 @@
+.help-item {
+	margin-bottom: 5px;
+}
+
+.help-item .head {
+	background-color: #E5F3F3;
+}
+
+.help-item .body {
+	padding: 16px 0;
+	border-bottom: 1px solid #EEEEEE;
+	margin-bottom: 32px;
+}
+
+.help-item .body p {
+	font-size: 13px;
+	color: #555555;
+	line-height: 1.7em;
+}

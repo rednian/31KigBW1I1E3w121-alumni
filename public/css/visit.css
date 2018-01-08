@@ -1,0 +1,66 @@
+.visit > .head {
+	background-color: #008C8C;
+	position: relative;
+	margin: 0px;
+	padding: 15px;
+	margin-bottom: 5px;
+}
+
+.visit > .head img {
+	position: absolute;
+	width: 130px;
+	height: 130px;
+	top:25;
+	left:25;
+	border: 5px solid #FFFFFF;
+	border-radius: 130px;
+}
+
+.visit > .head ul {
+	width: 100%;
+	margin-top: 15px;
+}
+
+.visit > .head ul li {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.visit > .head ul li a {
+	color: #FFFFFF;
+	opacity: .8;
+}
+
+.visit.visit-company > .head {
+	background-color: #008C8C; 
+	background-image: url("../images/visit/mitsbg.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.visit.visit-company > .head img {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	top:-35px;
+	left:25px;
+	border: 5px solid #FFFFFF;
+	border-radius: 150px;
+}
+
+.job-posted ul li {
+	overflow: hidden;
+	padding:7px 0;
+	border-bottom: 1px solid #F5F5F5;
+}
+
+.business-info {
+	padding: 15px 25px;
+}
+
+.business-info-content p {
+	color: #555555;
+	line-height: 1.7em;
+	font-size: 13px;
+}
+

@@ -1,0 +1,140 @@
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #EEEEEE;
+    padding-top: 15px;
+}
+
+
+.p-head {
+	padding: 16px;
+	position: relative;
+	margin-bottom: 6px;
+}
+
+.p-top {
+	padding-right: 10px;
+	overflow: hidden;
+}
+
+.p-top h3 {
+	padding:0;
+	margin:0;
+	font-family: Arial, sans-serif;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.p-top img {
+	width: 24px;
+}
+
+.p-mid {
+	display: block;
+	overflow: hidden;
+}
+
+.p-mid h6 {
+	font-size: 14px;
+	margin-right: 5px;
+	margin-bottom: 0px;
+}
+
+.p-mid span {
+	font-size: 12px;
+	color: #999;
+}
+
+.p-bot-right p {
+	line-height: 0;
+	padding-top: 10px;
+
+}
+
+.p-bot {
+	margin-top: 60px;
+	padding-right: 10px;
+}
+
+.inbox ul {
+	padding-bottom: 0px;
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.inbox ul li {
+	display: inline-block;
+	/*margin-right: 15px;*/
+	padding: 5px 0;
+}
+
+.inbox ul li a {
+	font-size: 12px;
+	color: #008C8C;
+}
+
+.rpb {
+	padding-right: 10px;
+	border-right: 1px solid #CCCCCC;
+}
+
+.inbox ul li input[type=text] {
+	border: 1px solid #DDDDDD;
+	padding: 3px 10px;
+	margin-left: 9px;
+}
+
+.inbox ul li button {
+	width: 28px;
+	height: 28px;
+	border: none;
+	background-color: #008C8C;
+	color: #FFFFFF;
+}
+
+.inbox table {
+	font-size: 12px;
+}
+
+.inbox table tr {
+	padding-top: 25px!important;
+}
+
+.inbox table tr td a {
+	color: #008C8C;
+}
+
+#inboxMessageModal .head > img {
+	width: 150px;
+}
+
+#inboxMessageModal .head {
+
+}
+
+#inboxMessageModal .app-btn {
+	background-color: #008C8C;
+	color: #FFFFFF;
+	padding: 10px;
+}
+
+#inboxMessageModal .btn-apply {
+	position: absolute;
+	bottom: 15px;
+	right: 25px;
+	font-size: 18px;
+	padding: 10px 25px;
+}
+
+#inboxMessageModal .body ul {
+	padding-left: 24px;
+}
+
+#inboxMessageModal .footer textarea {
+	width: 100%;
+	height: 100px;
+	border: 1px solid #DDDDDD;
+	resize: none;
+}
+
