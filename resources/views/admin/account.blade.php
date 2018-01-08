@@ -24,7 +24,7 @@
                             <div class="col-xs-7">
                                 <div class="row">
                                     <div class="col-xs-4">
-                                        <img src="{{url('images/profile/kk.png')}}" alt="" class="img img-responsive mb-5">
+                                        <img src="{{url('public/images/profile/kk.png')}}" alt="" class="img img-responsive mb-5">
                                         <button class="btn btn-success btn-prime block">Upload</button>
                                     </div>
                                     <div class="col-xs-8">
@@ -66,7 +66,7 @@
                                 <ul class="ptb-15 border-bot">
                                     @for($x = 0; $x < 6; $x++)
                                     <li class="oh mb-24">
-                                        <img src="{{url('images/batchmates/don.png')}}" alt="" class="pull-left mr-15" style="max-width:90px;">
+                                        <img src="{{url('public/images/batchmates/don.png')}}" alt="" class="pull-left mr-15" style="max-width:90px;">
                                         <div style="padding-top:0px;" class="mb-15">
                                             <h4>Don J. Del Rosario</h4>
                                             <h6 class="mt-2 f-11 c-sdark">Department Head</h6>
