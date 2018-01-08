@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Alumni | 404 Error</title>
+    <title>Alumni | 403 Error</title>
+
 
     <link href="{{asset('public/css/bootstrap.min.css')}}" rel="stylesheet">
 
@@ -18,16 +19,17 @@
 
 
 <div class="middle-box text-center animated fadeInDown">
-    <h1>404</h1>
-    <h3 class="font-bold">Page Not Found</h3>
+    <h1>403</h1>
+    <h3 class="font-bold">Access forbidden!</h3>
 
     <div class="error-desc">
-        Sorry, but the page you are looking for has note been found. Try checking the URL for error, then hit the refresh button on your browser or try found something else in our app.
+        You don't have permission to access the requested directory. There is either no index document or the directory is read-protected.
+        If you think this is a server error, please contact the webmaster.
         {{--<form class="form-inline m-t" role="form">--}}
-            {{--<div class="form-group">--}}
-                {{--<input type="text" class="form-control" placeholder="Search for page">--}}
-            {{--</div>--}}
-            {{--<button type="submit" class="btn btn-primary">Search</button>--}}
+        {{--<div class="form-group">--}}
+        {{--<input type="text" class="form-control" placeholder="Search for page">--}}
+        {{--</div>--}}
+        {{--<button type="submit" class="btn btn-primary">Search</button>--}}
         {{--</form>--}}
     </div>
 </div>

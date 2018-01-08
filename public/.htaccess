@@ -2,10 +2,7 @@
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
-    <FilesMatch "^\.">
-        Order allow,deny
-        Deny from all
-    </FilesMatch>
+
 
     RewriteEngine On
 

@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Alumni | 500 Error</title>
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('public/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <link href="{{asset('public/css/style.css')}}" rel="stylesheet">
 
 </head>
 
