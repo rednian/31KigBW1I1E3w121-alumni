@@ -17,5 +17,9 @@
 
 //Route::get('/','Admin\HomeController@index');
 
+//admin....
 Route::get('/admin','Admin\HomeController@index');
+
 Route::resource('/admin/account','Admin\AccountController');
+
+Route::get('/admin/alumni','Admin\AlumnusController@index');
