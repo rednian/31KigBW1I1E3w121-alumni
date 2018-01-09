@@ -18,10 +18,24 @@ Route::get('/', function () {
 //Route::get('/','Admin\HomeController@index');
 
 //admin....
-Route::get('/admin','Admin\HomeController@index');
 
-Route::resource('/admin/account','Admin\AccountController');
+Route::prefix('admin')->group(function () {
 
-Route::get('/admin/alumni','Admin\AlumnusController@index');
 
-Route::get('/admin/company/visitor','Admin\CompanyController@visitor');
+
+    Route::get('company/visitor', array(
+        'as' =>'company.visitor',
+        'uses'=>'Admin\CompanyController@visitor'
+    ));
+
+    Route::resource('alumni','Admin\AlumnusController');
+
+    Route::resource('account','Admin\AccountController');
+
+    Route::resource('advertisement','Admin\AdvertisementController');
+
+//    Route::get('users', function () {
+//        // Matches The "/admin/users" URL
+//    });
+});
+
