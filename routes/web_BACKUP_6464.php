@@ -37,12 +37,10 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('alumni','Admin\AlumnusController');
 
-
+<<<<<<< HEAD
     Route::resource('account','Admin\AccountController');
 
     Route::resource('advertisement','Admin\AdvertisementController');
-
-    Route::get('/admin/alumni','Admin\AlumnusController@index');
 
 });
 /*
@@ -50,6 +48,14 @@ Route::prefix('admin')->group(function () {
  | Client Routes
  |----------------------------------------------------------------------------------------------------------------------
 */
+=======
+Route::get('/admin/alumni','Admin\AlumnusController@index');
+
+
+
+
+
+// --------------------------------------- alumnus ----------------------------------------------------------------
 
 Route::get('/login', function() {
 	return view('login');
@@ -60,4 +66,4 @@ Route::post('loginValidate', [ 'as' => 'loginValidate', 'uses' => 'LoginControll
 Route::get('/home', function () {
 	return view('alumnus/index');
 });
-
+>>>>>>> origin/alumnus
