@@ -17,14 +17,33 @@ Route::get('/', function () {
 
 //Route::get('/','Admin\HomeController@index');
 
-//admin....
-Route::get('/admin','Admin\HomeController@index');
+/*
+ |----------------------------------------------------------------------------------------------------------------------
+ | Admin Routes
+ |----------------------------------------------------------------------------------------------------------------------
+*/
+Route::prefix('admin')->group(function () {
 
-Route::resource('/admin/account','Admin\AccountController');
+    //login
+    Route::get('login','Admin\AdminAuth\AuthController@showLoginForm');
+//    Route::post('login','Admin\AdminAuth\AuthController@login');
+//    Route::get('logout','Admin\AdminAuth\AuthController@logout');
 
-Route::get('/admin/alumni','Admin\AlumnusController@index');
+
+    Route::get('company/visitor',[
+        'as' =>'company.visitor',
+        'uses'=>'Admin\CompanyController@visitor'
+    ]);
+
+    Route::resource('alumni','Admin\AlumnusController');
 
 
+	Route::get('/admin/alumni','Admin\AlumnusController@index');
+
+    Route::resource('account','Admin\AccountController');
+
+    Route::resource('advertisement','Admin\AdvertisementController');
+  });
 
 
 
