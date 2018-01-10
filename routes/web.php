@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'welcome';
 });
 
 //Route::get('/','Admin\HomeController@index');
@@ -23,3 +23,13 @@ Route::get('/admin','Admin\HomeController@index');
 Route::resource('/admin/account','Admin\AccountController');
 
 Route::get('/admin/alumni','Admin\AlumnusController@index');
+
+
+
+
+
+// --------------------------------------- alumnus ----------------------------------------------------------------
+
+Route::get('/home', function () {
+	return view('alumnus/index');
+});
