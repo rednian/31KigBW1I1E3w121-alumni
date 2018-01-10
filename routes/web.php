@@ -30,6 +30,12 @@ Route::get('/admin/alumni','Admin\AlumnusController@index');
 
 // --------------------------------------- alumnus ----------------------------------------------------------------
 
+Route::get('/login', function() {
+	return view('login');
+});
+
+Route::post('loginValidate', [ 'as' => 'loginValidate', 'uses' => 'LoginController@loginValidation']);
+
 Route::get('/home', function () {
 	return view('alumnus/index');
 });
