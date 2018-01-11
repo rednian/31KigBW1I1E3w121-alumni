@@ -4,6 +4,7 @@ namespace Alumni\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Alumni\Http\Controllers\Controller;
+use Alumni\Model\AdminModel;
 
 class AccountController extends Controller
 {
@@ -24,7 +25,7 @@ class AccountController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +36,9 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        dd(AdminModel::all());
+//        dd($request->input());
+        return back();
     }
 
     /**

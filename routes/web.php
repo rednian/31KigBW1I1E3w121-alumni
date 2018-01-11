@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function () {
 
     //login
-    Route::get('login','Admin\AdminAuth\AuthController@showLoginForm');
+    Route::get('/','Admin\AdminAuth\AuthController@showLoginForm');
 //    Route::post('login','Admin\AdminAuth\AuthController@login');
 //    Route::get('logout','Admin\AdminAuth\AuthController@logout');
 
