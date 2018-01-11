@@ -122,6 +122,13 @@
 <script src="{{ asset('public/js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('public/js/moment.js') }}"></script>
+<script>
+    
+    function log(a){
+        console.log(a)
+    }
+
+</script>
 @yield('script')
 
 </body>

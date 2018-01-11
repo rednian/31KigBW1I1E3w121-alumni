@@ -53,8 +53,8 @@ Route::get('/login', function() {
 	return view('login');
 });
 
-Route::post('loginValidate', [ 'as' => 'loginValidate', 'uses' => 'LoginController@loginValidation']);
 
-Route::get('/home', function () {
-	return view('alumnus/index');
-});
+
+Route::get('loginValidate', [ 'as' => 'loginValidate', 'uses' => 'LoginController@loginValidation']);
+
+// Route::get('idInfo', [ 'as' => 'idInfo', 'uses' => 'LoginController@getIdInfo']);
