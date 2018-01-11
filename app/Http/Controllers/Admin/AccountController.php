@@ -3,6 +3,7 @@
 namespace Alumni\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Alumni\Http\Requests\Account;
 use Alumni\Http\Controllers\Controller;
 use Alumni\Model\AdminModel;
 
@@ -34,11 +35,12 @@ class AccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Account $request)
     {
-//        dd(AdminModel::all());
-//        dd($request->input());
-        return back();
+        AdminModel::create($request->all());
+        Session::flash('error','');
+        Session::flash('success','');
+        return redirect('account')->withInput();
     }
 
     /**

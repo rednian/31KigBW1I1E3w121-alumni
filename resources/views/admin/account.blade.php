@@ -34,7 +34,7 @@
                                         <div class="col-xs-8">
                                             <li class="mb-7 block">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Firstname</h6>
-                                                <input type="text" class="border-light block" value="" name="fname">
+                                                <input type="text" class="border-light block" name="fname" value="{{ old('fname') }}" autocomplete="of">
                                             </li>
                                             <li class="mb-7 block">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Middlename</h6>
@@ -62,7 +62,7 @@
                                             </li>
                                             <li class="mb-7">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Confirm Password</h6>
-                                                <input type="text" class="border-light" style="width:181px;" name="confirm_password">
+                                                <input type="text" class="border-light" style="width:181px;" name="password_confirmation">
                                             </li>
                                             <input type="submit" class="btn btn-success btn-prime pull-right"
                                                    value="Save">
@@ -70,7 +70,9 @@
                                     </form>
 
                                 </div>
+
                             </div>
+                            @include('include.message')
                         </div>
                         <div class="col-xs-5">
                             <ul class="ptb-15 border-bot">
