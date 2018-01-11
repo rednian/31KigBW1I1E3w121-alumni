@@ -23,6 +23,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-7">
+                                @include('include.message')
                                 <div class="row">
                                     <form class="inline-block" method="post"  action="{{route('account.store')}}">
                                         {{csrf_field()}}
@@ -72,7 +73,7 @@
                                 </div>
 
                             </div>
-                            @include('include.message')
+
                         </div>
                         <div class="col-xs-5">
                             <ul class="ptb-15 border-bot">

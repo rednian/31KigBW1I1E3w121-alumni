@@ -38,9 +38,9 @@ class AccountController extends Controller
     public function store(Account $request)
     {
         AdminModel::create($request->all());
-        Session::flash('error','');
+//        Session::flash('error','');
         Session::flash('success','');
-        return redirect('account')->withInput();
+        return back();
     }
 
     /**

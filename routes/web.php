@@ -48,7 +48,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('account','Admin\AccountController');
 
     Route::resource('advertisement','Admin\AdvertisementController');
-  });
+
 
     Route::resource('account','Admin\AccountController');
 
@@ -57,6 +57,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/admin/alumni','Admin\AlumnusController@index');
 
 });
+
 /*
  |----------------------------------------------------------------------------------------------------------------------
  | Client Routes
@@ -71,7 +72,7 @@ Route::get('/login', function() {
 Route::get('loginValidate', [ 'as' => 'loginValidate', 'uses' => 'LoginController@loginValidation']);
 
 // Route::get('idInfo', [ 'as' => 'idInfo', 'uses' => 'LoginController@getIdInfo']);
-=======
+
 Route::get('/home', function () {
 	return view('alumnus/index');
 });

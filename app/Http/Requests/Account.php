@@ -29,7 +29,7 @@ class Account extends FormRequest
           'lastname' => 'required|alpha|max:255',
           'department' => 'required|alpha|max:255',
           'position' => 'required|max:255',
-          'password' => 'required|confirmed|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/|',
+          'password' => 'required|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/|confirmed',
 //          'image_path' => 'required|max:255',
           'username' => 'required|unique:admin,username|max:255',
         ];
