@@ -29,8 +29,8 @@ class Account extends FormRequest
           'lastname' => 'required|alpha_spaces|min:3|max:255',
           'department' => 'required|alpha_spaces|min:3|max:255',
           'position' => 'required|alpha_spaces|min:3|max:255',
-          'password' => 'required|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/|confirmed',
-//          'image_path' => 'required|max:255',
+          'password' => 'required|different:username|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/|confirmed' ,
+          'image_path' => 'image',
           'username' => 'required|unique:admin,username|min:3|max:255',
         ];
     }
