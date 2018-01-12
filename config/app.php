@@ -176,6 +176,7 @@ return [
         // Alumni\Providers\BroadcastServiceProvider::class,
         Alumni\Providers\EventServiceProvider::class,
         Alumni\Providers\RouteServiceProvider::class,
+        Alumni\Providers\RulesSpaceProvider::class,
 
     ],
 
