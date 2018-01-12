@@ -35,35 +35,35 @@
                                         <div class="col-xs-8">
                                             <li class="mb-7 block">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Firstname</h6>
-                                                <input type="text" class="border-light block" name="fname" value="{{ old('fname') }}" autocomplete="of">
+                                                <input type="text" class="border-light block" name="fname" value="{{ old('fname') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7 block">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Middlename</h6>
-                                                <input type="text" class="border-light block" name="midname">
+                                                <input type="text" class="border-light block" name="midname" value="{{ old('midname') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7 block">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Lastname</h6>
-                                                <input type="text" class="border-light block" name="lastname">
+                                                <input type="text" class="border-light block" name="lastname" value="{{ old('lastname') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7 mr-5">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Department</h6>
-                                                <input type="text" class="border-light" style="width:181px;" name="department">
+                                                <input type="text" class="border-light" style="width:181px;" name="department" value="{{ old('department') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Position</h6>
-                                                <input type="text" class="border-light" style="width:181px;" name="position">
+                                                <input type="text" class="border-light" style="width:181px;" name="position" value="{{ old('position') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7 mr-5">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Username</h6>
-                                                <input type="text" class="border-light" style="width:181px;" name="username">
+                                                <input type="text" class="border-light" style="width:181px;" name="username" value="{{ old('username') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Password</h6>
-                                                <input type="text" class="border-light" style="width:181px;" name="password">
+                                                <input type="text" class="border-light" style="width:181px;" name="password" value="{{ old('password') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Confirm Password</h6>
-                                                <input type="text" class="border-light" style="width:181px;" name="password_confirmation">
+                                                <input type="text" class="border-light" style="width:181px;" name="password_confirmation" value="{{ old('password_confirmation') }}" autocomplete="off">
                                             </li>
                                             <input type="submit" class="btn btn-success btn-prime pull-right"
                                                    value="Save">
