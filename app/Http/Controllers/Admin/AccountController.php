@@ -38,10 +38,9 @@ class AccountController extends Controller
     public function store(Account $request)
     {
         $request['password'] = bcrypt($request->password);
-        dd($request); exit();
         AdminModel::create($request->all());
 
-        Session::flash('success','');
+        Session::flash('success','sdssds');
         return back();
     }
 
