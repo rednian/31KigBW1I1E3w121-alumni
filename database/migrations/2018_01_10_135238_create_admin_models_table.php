@@ -16,11 +16,12 @@ class CreateAdminModelsTable extends Migration
         Schema::create('admin', function (Blueprint $table) {
             $table->increments('user_id');
             $table->string('fname');
-            $table->string('midnname');
+            $table->string('midname');
             $table->string('lastname');
             $table->string('department');
             $table->string('username');
             $table->string('password');
+            $table->tinyInteger('status')->default('1');
             $table->string('image_path');
             $table->timestamps();
         });

@@ -3,9 +3,12 @@
 namespace Alumni\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Alumni\Http\Requests\Account;
 use Alumni\Http\Controllers\Controller;
 use Alumni\Model\AdminModel;
+use Session;
+
 
 class AccountController extends Controller
 {
@@ -16,8 +19,10 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('admin.account');
-    }
+         $admin_user = AdminModel::all()->sortBy('user_id');
+         
+        return view('admin.account',compact('admin_user'));
+    } 
 
     /**
      * Show the form for creating a new resource.
@@ -37,10 +42,12 @@ class AccountController extends Controller
      */
     public function store(Account $request)
     {
-        $request['password'] = bcrypt($request->password);
+
+        $request['password'] = Hash::make($request->password);
+
         AdminModel::create($request->all());
 
-        Session::flash('success','sdssds');
+        Session::flash('success','Account successfully created.');
         return back();
     }
 
