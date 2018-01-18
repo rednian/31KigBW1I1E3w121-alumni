@@ -4,17 +4,7 @@
     <div class="main-content">
         <div class="container" style="min-height: 500px;">
             <div class="row">
-                <div class="col-xs-2 s-pad">
-                    <div class="bg-white admin-left-pane" style="padding:0 15px;">
-                        <ul class="f-12">
-                            <li class="active"><a href="account_sysad.html" class="c-bright-green">System
-                                    Administrator</a></li>
-                            <li><a href="account_alumnus.html" class="c-bright-green">Alumnus</a></li>
-                            <li><a href="account_partners.html" class="c-bright-green">Partners</a></li>
-                        </ul>
-                    </div>
-                </div>
-
+                @include('include.admin.account-sidebar')
                 <div class="col-xs-10 s-pad">
                     <div class="admin-content bg-white">
                         <div class="head oh border-bot mb-10">
@@ -28,9 +18,12 @@
                                     <form class="inline-block" method="post"  action="{{route('account.store')}}">
                                         {{csrf_field()}}
                                         <div class="col-xs-4">
-                                            <img src="{{url('public/images/profile/kk.png')}}" alt=""
-                                                 class="img img-responsive mb-5">
-                                            <button class="btn btn-success btn-prime block">Upload</button>
+
+                                            <img id="blah" src="#" alt="your image" class="img img-responsive mb-5" />
+                                            <input type='file' onchange="readURL(this);" />
+                                            {{--<img src="{{url('public/images/profile/kk.png')}}" alt=""--}}
+                                                 {{--class="img img-responsive mb-5">--}}
+                                            {{--<button class="btn btn-success btn-prime block">Upload</button>--}}
                                         </div>
                                         <div class="col-xs-8">
                                             <li class="mb-7 block">
@@ -77,27 +70,27 @@
                         </div>
                         <div class="col-xs-5">
                             <ul class="ptb-15 border-bot">
-                                @for($x = 0; $x < 6; $x++)
+                                @foreach($admin_user as $user)
+                                    <?php $carbon = new \Carbon\Carbon($user['created_at']); ?>
                                     <li class="oh mb-24">
                                         <img src="{{url('public/images/batchmates/don.png')}}" alt=""
                                              class="pull-left mr-15" style="max-width:90px;">
 
                                         <div style="padding-top:0px;" class="mb-15">
-                                            <h4>Don J. Del Rosario</h4>
-                                            <h6 class="mt-2 f-11 c-sdark">Department Head</h6>
-                                            <h5 class="mt-3 c-bright-green f-12">Office of the Student Affairs and
-                                                Services</h5>
+                                            <h4>{{ucwords($user['fname']).' '.ucwords($user['midname']).' '.ucwords($user['lastname']) }}</h4>
+                                            <h6 class="mt-2 f-11 c-sdark">{{ucwords($user['position'])}}</h6>
+                                            <h5 class="mt-3 c-bright-green f-12">{{ucwords($user['department'])}}</h5>
                                         </div>
                                         <div class="oh" style="padding-top:5px;padding-right:15px">
-                                            <a href="" class="f-10 c-bright-green pull-left">Registered Date: <span
-                                                        class="c-sdark">07/25/2017</span></a>
-                                            <a href="" class="f-10 c-bright-green pull-right btn btn-default box-edge"
-                                               style="padding:0px 7px">Deactivate</a>
+                                            <a href="" data-toggle="tooltip" title="{{$carbon->format('M d, Y h:i:s a')}}" class="f-10 c-bright-green pull-left">
+                                                Registered Date: <span  class="c-sdark">{{$carbon->format('M d, Y')}}</span>
+                                            </a>
+                                            <a href="" class="f-10 c-bright-green pull-right btn btn-default box-edge" style="padding:0px 7px">Deactivate</a>
                                             <a href="" class="f-10 pull-right btn btn-success btn-prime box-edge mr-5"
                                                style="padding:0px 7px;">Activate</a>
                                         </div>
                                     </li>
-                                @endfor
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -107,4 +100,29 @@
     </div>
     </div>
 @endsection
+
+@section('script')
+    <script type="text/javascript">
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
+
+@endsection
+
+
+
+
+
+
 
