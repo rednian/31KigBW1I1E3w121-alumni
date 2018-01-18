@@ -15,12 +15,12 @@
                             <div class="col-xs-7">
                                 @include('include.message')
                                 <div class="row">
-                                    <form class="inline-block" method="post"  action="{{route('account.store')}}">
+                                    <form class="inline-block" method="post"  action="{{route('account.store')}}" enctype="multipart/form-data">
                                         {{csrf_field()}}
                                         <div class="col-xs-4">
 
                                             <img id="blah" src="#" alt="your image" class="img img-responsive mb-5" />
-                                            <input type='file' onchange="readURL(this);" />
+                                            <input type='file' class="border-light block" onchange="readURL(this);" name="image_path" />
                                             {{--<img src="{{url('public/images/profile/kk.png')}}" alt=""--}}
                                                  {{--class="img img-responsive mb-5">--}}
                                             {{--<button class="btn btn-success btn-prime block">Upload</button>--}}
@@ -85,9 +85,8 @@
                                             <a href="" data-toggle="tooltip" title="{{$carbon->format('M d, Y h:i:s a')}}" class="f-10 c-bright-green pull-left">
                                                 Registered Date: <span  class="c-sdark">{{$carbon->format('M d, Y')}}</span>
                                             </a>
-                                            <a href="" class="f-10 c-bright-green pull-right btn btn-default box-edge" style="padding:0px 7px">Deactivate</a>
-                                            <a href="" class="f-10 pull-right btn btn-success btn-prime box-edge mr-5"
-                                               style="padding:0px 7px;">Activate</a>
+                                            {{--<a href="" class="f-10 c-bright-green pull-right btn btn-default box-edge" style="padding:0px 7px">Deactivate</a>--}}
+                                            <a href="" class="f-10 pull-right btn btn-success btn-prime box-edge mr-5" style="padding:0px 7px;">Activate</a>
                                         </div>
                                     </li>
                                 @endforeach

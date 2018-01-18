@@ -2,6 +2,7 @@
 
 namespace Alumni\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Alumni\Http\Requests\Account;
@@ -20,7 +21,9 @@ class AccountController extends Controller
     public function index()
     {
          $admin_user = AdminModel::all()->sortBy('user_id');
-         
+
+//        dd(storage_path());
+
         return view('admin.account',compact('admin_user'));
     } 
 
@@ -44,8 +47,24 @@ class AccountController extends Controller
     {
 
         $request['password'] = Hash::make($request->password);
+        $image_name = $request['username'].Carbon::now();
 
-        AdminModel::create($request->all());
+        dd($image_name);
+
+
+        if($request->hasFile('image_path')){
+
+            $image = $request->image_path->storeAs('admin',$request['username']);
+
+//            dd($image);
+
+
+        }
+        else{
+//            $request['image_path']= '';
+        }
+
+//        AdminModel::create($request->all());
 
         Session::flash('success','Account successfully created.');
         return back();
