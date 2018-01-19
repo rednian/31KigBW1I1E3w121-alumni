@@ -62,7 +62,7 @@
                                             <li class="mb-7">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Password</h6>
                                                 <input type="text" class="border-light" style="width:181px;"
-                                                       name="password" value="{{ old('password') }}" autocomplete="off" placeholder="password should have atlest one number..">
+                                                       name="password" value="{{ old('password') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Confirm Password</h6>

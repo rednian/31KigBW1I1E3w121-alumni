@@ -60,7 +60,7 @@ Route::prefix('admin')->group(function () {
 
   Route::resource('advertisement', 'Admin\AdvertisementController');
 
-  Route::get('/admin/alumni', 'Admin\AlumnusController@index');
+  Route::resource('/admin/alumni', 'Admin\AlumnusController');
 
 });
 /*
