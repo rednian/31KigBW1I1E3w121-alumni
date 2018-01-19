@@ -15,48 +15,60 @@
                             <div class="col-xs-7">
                                 @include('include.message')
                                 <div class="row">
-                                    <form class="inline-block" method="post"  action="{{route('account.store')}}" enctype="multipart/form-data">
+                                    <form class="inline-block" method="post" action="{{route('account.store')}}"
+                                          enctype="multipart/form-data">
                                         {{csrf_field()}}
                                         <div class="col-xs-4">
 
-                                            <img id="blah" src="#" alt="your image" class="img img-responsive mb-5" />
-                                            <input type='file' class="border-light block" onchange="readURL(this);" name="image_path" />
+                                            <img id="blah" src="{{url('public/storage/default/user.png')}}" alt="your image" class="img img-thumbnail img-responsive mb-5"/>
+                                            <input type='file' class="border-light block" onchange="readURL(this);"
+                                                   name="image"/>
                                             {{--<img src="{{url('public/images/profile/kk.png')}}" alt=""--}}
-                                                 {{--class="img img-responsive mb-5">--}}
+                                            {{--class="img img-responsive mb-5">--}}
                                             {{--<button class="btn btn-success btn-prime block">Upload</button>--}}
                                         </div>
                                         <div class="col-xs-8">
                                             <li class="mb-7 block">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Firstname</h6>
-                                                <input type="text" class="border-light block" name="fname" value="{{ old('fname') }}" autocomplete="off">
+                                                <input type="text" class="border-light block" name="fname"
+                                                       value="{{ old('fname') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7 block">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Middlename</h6>
-                                                <input type="text" class="border-light block" name="midname" value="{{ old('midname') }}" autocomplete="off">
+                                                <input type="text" class="border-light block" name="midname"
+                                                       value="{{ old('midname') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7 block">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Lastname</h6>
-                                                <input type="text" class="border-light block" name="lastname" value="{{ old('lastname') }}" autocomplete="off">
+                                                <input type="text" class="border-light block" name="lastname"
+                                                       value="{{ old('lastname') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7 mr-5">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Department</h6>
-                                                <input type="text" class="border-light" style="width:181px;" name="department" value="{{ old('department') }}" autocomplete="off">
+                                                <input type="text" class="border-light" style="width:181px;"
+                                                       name="department" value="{{ old('department') }}"
+                                                       autocomplete="off">
                                             </li>
                                             <li class="mb-7">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Position</h6>
-                                                <input type="text" class="border-light" style="width:181px;" name="position" value="{{ old('position') }}" autocomplete="off">
+                                                <input type="text" class="border-light" style="width:181px;"
+                                                       name="position" value="{{ old('position') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7 mr-5">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Username</h6>
-                                                <input type="text" class="border-light" style="width:181px;" name="username" value="{{ old('username') }}" autocomplete="off">
+                                                <input type="text" class="border-light" style="width:181px;"
+                                                       name="username" value="{{ old('username') }}" autocomplete="off">
                                             </li>
                                             <li class="mb-7">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Password</h6>
-                                                <input type="text" class="border-light" style="width:181px;" name="password" value="{{ old('password') }}" autocomplete="off">
+                                                <input type="text" class="border-light" style="width:181px;"
+                                                       name="password" value="{{ old('password') }}" autocomplete="off" placeholder="password should have atlest one number..">
                                             </li>
                                             <li class="mb-7">
                                                 <h6 class="mt-0 f-11 c-sdark mb-3">Confirm Password</h6>
-                                                <input type="text" class="border-light" style="width:181px;" name="password_confirmation" value="{{ old('password_confirmation') }}" autocomplete="off">
+                                                <input type="text" class="border-light" style="width:181px;"
+                                                       name="password_confirmation"
+                                                       value="{{ old('password_confirmation') }}" autocomplete="off">
                                             </li>
                                             <input type="submit" class="btn btn-success btn-prime pull-right"
                                                    value="Save">
@@ -70,26 +82,41 @@
                         </div>
                         <div class="col-xs-5">
                             <ul class="ptb-15 border-bot">
-                                @foreach($admin_user as $user)
-                                    <?php $carbon = new \Carbon\Carbon($user['created_at']); ?>
-                                    <li class="oh mb-24">
-                                        <img src="{{url('public/images/batchmates/don.png')}}" alt=""
-                                             class="pull-left mr-15" style="max-width:90px;">
 
-                                        <div style="padding-top:0px;" class="mb-15">
-                                            <h4>{{ucwords($user['fname']).' '.ucwords($user['midname']).' '.ucwords($user['lastname']) }}</h4>
-                                            <h6 class="mt-2 f-11 c-sdark">{{ucwords($user['position'])}}</h6>
-                                            <h5 class="mt-3 c-bright-green f-12">{{ucwords($user['department'])}}</h5>
-                                        </div>
-                                        <div class="oh" style="padding-top:5px;padding-right:15px">
-                                            <a href="" data-toggle="tooltip" title="{{$carbon->format('M d, Y h:i:s a')}}" class="f-10 c-bright-green pull-left">
-                                                Registered Date: <span  class="c-sdark">{{$carbon->format('M d, Y')}}</span>
-                                            </a>
-                                            {{--<a href="" class="f-10 c-bright-green pull-right btn btn-default box-edge" style="padding:0px 7px">Deactivate</a>--}}
-                                            <a href="" class="f-10 pull-right btn btn-success btn-prime box-edge mr-5" style="padding:0px 7px;">Activate</a>
-                                        </div>
-                                    </li>
-                                @endforeach
+                                @if(!empty($admin_user))
+
+                                    @foreach($admin_user as $user)
+
+                                        <?php $carbon = new \Carbon\Carbon($user['created_at']); ?>
+
+                                        <li class="oh mb-24">
+                                            <img src="{{asset('public/storage/'.$user['image_path'])}}" alt=""
+                                                 class="pull-left mr-15 img-responsive img-thumbnail" style="max-width:90px;">
+
+                                            <div style="padding-top:0px;" class="mb-15">
+                                                <h4>{{ucwords($user['fname']).' '.ucwords($user['midname']).' '.ucwords($user['lastname']) }}</h4>
+                                                <h6 class="mt-2 f-11 c-sdark">{{ucwords($user['position'])}}</h6>
+                                                <h5 class="mt-3 c-bright-green f-12">{{ucwords($user['department'])}}</h5>
+                                            </div>
+                                            <div class="oh" style="padding-top:5px;padding-right:15px">
+                                                <a href="" data-toggle="tooltip"
+                                                   title="{{$carbon->format('M d, Y h:i:s a')}}"
+                                                   class="f-10 c-bright-green pull-left">
+                                                    Registered Date: <span
+                                                            class="c-sdark">{{$carbon->format('M d, Y')}}</span>
+                                                </a>
+                                                {{--<a href="" class="f-10 c-bright-green pull-right btn btn-default box-edge" style="padding:0px 7px">Deactivate</a>--}}
+                                                <button data-status="{{ $user['status']}}" id="btn-status" href=""
+                                                   class="f-10 pull-right btn btn-success btn-prime box-edge mr-5" style="padding:0px 7px;">
+                                                    <?php echo $status = $user['status'] == 1 ? 'Deactivate': 'Activate'; ?>
+                                                </button>
+                                            </div>
+                                        </li>
+
+                                    @endforeach
+
+                                @endif
+
                             </ul>
                         </div>
                     </div>
@@ -102,6 +129,37 @@
 
 @section('script')
     <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            get_status();
+
+        });
+
+        function get_status(){
+
+            $('#btn-status').click(function(){
+
+                var status =  $(this).attr('data-status');
+
+                $.ajax({
+                    url:'{{route('account.status')}}',
+                    data: {status:  status},
+                    dataType:'html',
+                    success: function (data) {
+
+                        if(data == 0){
+
+                            $(this).html('Activate');
+                        }
+                        else{
+                            $(this).html('Deactivate');
+                        }
+                    }
+                });
+
+            });
+        }
 
         function readURL(input) {
             if (input.files && input.files[0]) {

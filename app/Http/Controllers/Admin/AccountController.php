@@ -4,10 +4,12 @@ namespace Alumni\Http\Controllers\Admin;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Alumni\Http\Requests\Account;
 use Alumni\Http\Controllers\Controller;
 use Alumni\Model\AdminModel;
+use Illuminate\Support\Facades\Storage;
 use Session;
 
 
@@ -46,25 +48,34 @@ class AccountController extends Controller
     public function store(Account $request)
     {
 
-        $request['password'] = Hash::make($request->password);
-        $image_name = $request['username'].Carbon::now();
-
-        dd($image_name);
 
 
-        if($request->hasFile('image_path')){
 
-            $image = $request->image_path->storeAs('admin',$request['username']);
 
-//            dd($image);
+        if($request->hasFile('image')){
 
+            $date = Carbon::now();
+            $image = $request->file('image');
+            $image_extension = $image->clientExtension();
+
+            if($image->isValid()){
+
+                //rename the image file to username and date uploaded
+                $image_name = $request['username'].'_'.$date->format('m-d-Y').'.'.$image_extension;
+
+                $image = $request->image->storeAs('admin',$image_name);
+
+                $request['image_path'] = $image;
+            }
 
         }
         else{
-//            $request['image_path']= '';
+            $request['image_path']= 'default/user.png';
         }
 
-//        AdminModel::create($request->all());
+        $request['password'] = Hash::make($request->password);
+
+        AdminModel::create($request->all());
 
         Session::flash('success','Account successfully created.');
         return back();
@@ -113,5 +124,16 @@ class AccountController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function get_status(Request $request){
+
+
+//        return ($request->input('status'));
+
+//        return response()->json([
+//          'name' => 'Abigail',
+//          'state' => 'CA'
+//        ]);
     }
 }
