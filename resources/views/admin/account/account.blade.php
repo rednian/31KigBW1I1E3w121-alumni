@@ -1,5 +1,13 @@
-@extends('layouts.admin-master')
 
+@extends('layouts.admin-master')
+@section('style')
+    <link href="{{asset('public/plugins/bootstrap-toggle/toggle-button.min.css')}}" rel="stylesheet">
+    <style>
+        .toggle-group{
+
+        }
+    </style>
+@endsection
 @section('content')
     <div class="main-content">
         <div class="container" style="min-height: 500px;">
@@ -22,7 +30,13 @@
 
                                             <img id="blah" src="{{url('public/storage/default/user.png')}}" alt="your image" class="img img-thumbnail img-responsive mb-5"/>
                                             <input type='file' class="border-light block" onchange="readURL(this);"
-                                                   name="image"/>
+                                                   name="image" style="
+                                                   /*border: 1px solid #008C8C;*/
+                                                   /*background-color: #008C8C;*/
+                                                   /*color: transparent;*/
+                                                   /*display: inline-block;*/
+                                                   /*padding: 6px 12px;*/
+                                                   cursor: pointer;"/>
                                             {{--<img src="{{url('public/images/profile/kk.png')}}" alt=""--}}
                                             {{--class="img img-responsive mb-5">--}}
                                             {{--<button class="btn btn-success btn-prime block">Upload</button>--}}
@@ -87,9 +101,13 @@
 
                                     @foreach($admin_user as $user)
 
-                                        <?php $carbon = new \Carbon\Carbon($user['created_at']); ?>
+                                        <li class="oh mb-24 admin-profile">
+                                            <section class="pull-right clearfix" id="btn-group">
 
-                                        <li class="oh mb-24">
+                                                <input {{ $status = $user['status'] == 1 ? 'checked':'' }} class="pull-right" data-size="mini" data-style="slow" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Inactive" type="checkbox">
+                                                <button class="btn btn-default btn-xs"><span class="fa fa-pencil"></span></button>
+                                                <button class="btn btn-default btn-xs"><span class="fa fa-trash-o"></span></button>
+                                            </section>
                                             <img src="{{asset('public/storage/'.$user['image_path'])}}" alt=""
                                                  class="pull-left mr-15 img-responsive img-thumbnail" style="max-width:90px;">
 
@@ -100,16 +118,12 @@
                                             </div>
                                             <div class="oh" style="padding-top:5px;padding-right:15px">
                                                 <a href="" data-toggle="tooltip"
-                                                   title="{{$carbon->format('M d, Y h:i:s a')}}"
+                                                   title="{{$user['created_at']->format('M d, Y h:i:s a')}}"
                                                    class="f-10 c-bright-green pull-left">
                                                     Registered Date: <span
-                                                            class="c-sdark">{{$carbon->format('M d, Y')}}</span>
+                                                            class="c-sdark">{{$user['created_at']->format('M d, Y')}}</span>
                                                 </a>
-                                                {{--<a href="" class="f-10 c-bright-green pull-right btn btn-default box-edge" style="padding:0px 7px">Deactivate</a>--}}
-                                                <button data-status="{{ $user['status']}}" id="btn-status" href=""
-                                                   class="f-10 pull-right btn btn-success btn-prime box-edge mr-5" style="padding:0px 7px;">
-                                                    <?php echo $status = $user['status'] == 1 ? 'Deactivate': 'Activate'; ?>
-                                                </button>
+
                                             </div>
                                         </li>
 
@@ -128,9 +142,20 @@
 @endsection
 
 @section('script')
+    <script src="{{asset('public/plugins/bootstrap-toggle/toggle-button.min.js')}}"></script>
     <script type="text/javascript">
 
         $(document).ready(function(){
+            $('#btn-group').removeClass('hide');
+
+
+            $( ".admin-profile" ).hover(
+                    function() {
+                        $( this ).addClass( "bg-gray");
+                    }, function() {
+                        $( this ).removeClass( "bg-gray");
+                    }
+            );
 
             get_status();
 
@@ -163,6 +188,7 @@
 
         function readURL(input) {
             if (input.files && input.files[0]) {
+
                 var reader = new FileReader();
 
                 reader.onload = function (e) {

@@ -25,7 +25,7 @@ class Account extends FormRequest
     {
         return [
           'fname' => 'required|alpha_spaces|min:3|max:255',
-          'midname' => 'alpha_spaces|min:3|max:255',
+          'midname' => 'bail|alpha_spaces|min:3|max:255',
           'lastname' => 'required|alpha_spaces|min:3|max:255',
           'department' => 'required|alpha_spaces|min:3|max:255',
           'position' => 'required|alpha_spaces|min:3|max:255',

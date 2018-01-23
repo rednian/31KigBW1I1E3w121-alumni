@@ -24,10 +24,9 @@ class AccountController extends Controller
     {
          $admin_user = AdminModel::all()->sortBy('user_id');
 
-//        dd(storage_path());
+        return view('admin.account.account',compact('admin_user'));
+    }
 
-        return view('admin.account',compact('admin_user'));
-    } 
 
     /**
      * Show the form for creating a new resource.
@@ -47,11 +46,6 @@ class AccountController extends Controller
      */
     public function store(Account $request)
     {
-
-
-
-
-
         if($request->hasFile('image')){
 
             $date = Carbon::now();
@@ -125,6 +119,7 @@ class AccountController extends Controller
     {
         //
     }
+
 
     public function get_status(Request $request){
 
