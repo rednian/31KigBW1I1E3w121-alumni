@@ -1,6 +1,5 @@
-<?php
-$active = \Request::segment(3);
-?>
+
+<?php $active = \Request::segment(3); ?>
 
 <div class="col-xs-2 s-pad">
     <div class="bg-white admin-left-pane" style="padding:0 15px;">
@@ -8,6 +7,7 @@ $active = \Request::segment(3);
             <li class="{{ $active == null ? 'active':''}}"><a href="{{route('account.index')}}" class="c-bright-green">System Administrator</a></li>
             <li class="{{ $active == 'alumnus' ? 'active':''}}"><a href="{{route('alumnus.get_graduate')}}" class="c-bright-green">Alumnus</a></li>
             <li class="{{ $active == 'partner' ? 'active':''}}"><a href="{{route('partner.index')}}" class="c-bright-green">Partners</a></li>
+            <li class="{{ $active == 'company' ? 'active':''}}"><a href="{{route('company.index')}}" class="c-bright-green">Company</a></li>
         </ul>
     </div>
 </div>

@@ -7,11 +7,14 @@ use Alumni\Http\Controllers\Controller;
 
 class CompanyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+    public function index()
+    {
+        return 'index';
+
+    }
+
     public function visitor()
     {
         return view('admin.company');
