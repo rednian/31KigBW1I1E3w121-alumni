@@ -22,10 +22,17 @@ Route::get('/', function () {
 */
 Route::prefix('admin')->group(function () {
 
+  //login
+  Route::get('login', 'Admin\AuthController@index');
+////    Route::post('login','Admin\AdminAuth\AuthController@login');
+////    Route::get('logout','Admin\AdminAuth\AuthController@logout');
+//
+
 
 //account
   Route::get('account/alumnus', ['as'=>'alumnus.get_graduate', 'uses'=>'Admin\AlumnusController@get_graduate']);
   Route::get('account/partner', ['as'=>'partner.index', 'uses'=>'Admin\PartnersController@index']);
+  Route::get('account/company', ['as'=>'company.index', 'uses'=>'Admin\CompanyController@index']);
   Route::get('account/get_status', ['as' => 'account.status', 'uses'=>'Admin\AccountController@get_status']);
 
 
@@ -37,20 +44,14 @@ Route::prefix('admin')->group(function () {
   Route::get('company/visitor', ['as' => 'company.visitor', 'uses' => 'Admin\CompanyController@visitor']);
 
 
-  //company
   Route::resource('advertisement', 'Admin\AdvertisementController');
-
   Route::resource('alumnus', 'Admin\AlumnusController');
-//  account
   Route::resource('account', 'Admin\AccountController');
+  Route::resource('company', 'Admin\CompanyController');
 
 
 
-//  //login
-//  Route::get('login', 'Admin\AdminAuth\AuthController@showLoginForm');
-////    Route::post('login','Admin\AdminAuth\AuthController@login');
-////    Route::get('logout','Admin\AdminAuth\AuthController@logout');
-//
+
 //
 //
 //
@@ -88,7 +89,7 @@ Route::prefix('admin')->group(function () {
 //
 //
 
-////  Route::resource('partner', 'Admin\PartnersController');
+
 
 
 });
