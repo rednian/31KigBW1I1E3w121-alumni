@@ -22,6 +22,12 @@ Route::get('/', function () {
 */
 Route::prefix('admin')->group(function () {
 
+  //login
+  Route::get('login', 'Admin\AuthController@index');
+////    Route::post('login','Admin\AdminAuth\AuthController@login');
+////    Route::get('logout','Admin\AdminAuth\AuthController@logout');
+//
+
 
 //account
   Route::get('account/alumnus', ['as'=>'alumnus.get_graduate', 'uses'=>'Admin\AlumnusController@get_graduate']);
@@ -45,11 +51,7 @@ Route::prefix('admin')->group(function () {
 
 
 
-//  //login
-//  Route::get('login', 'Admin\AdminAuth\AuthController@showLoginForm');
-////    Route::post('login','Admin\AdminAuth\AuthController@login');
-////    Route::get('logout','Admin\AdminAuth\AuthController@logout');
-//
+
 //
 //
 //

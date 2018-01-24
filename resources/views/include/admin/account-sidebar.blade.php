@@ -1,4 +1,3 @@
-
 <?php $active = \Request::segment(3); ?>
 
 <div class="col-xs-2 s-pad">
