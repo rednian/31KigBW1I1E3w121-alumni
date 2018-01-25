@@ -55,7 +55,6 @@
 </div>
 
 
-er
 
 
 @endsection
