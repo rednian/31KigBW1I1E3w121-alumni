@@ -24,8 +24,8 @@ Route::prefix('admin')->group(function () {
 
 
   //login
-  Route::get('login','Admin\Auth\LoginController@show_form');
-//  Route::post('login','Admin\AdminAuth\AuthController@login');
+  Route::get('/login','Admin\Auth\AdminLoginController@show_form')->name('admin.login');
+  Route::post('/login','Admin\Auth\AdminLoginController@login')->name('admin.login.submit');
 //  Route::get('logout','Admin\AdminAuth\AuthController@logout');
 
 // Registration Routes...
@@ -34,10 +34,10 @@ Route::prefix('admin')->group(function () {
 
 
 //account
-  Route::get('account/alumnus', ['as'=>'alumnus.get_graduate', 'uses'=>'Admin\AlumnusController@get_graduate']);
-  Route::get('account/partner', ['as'=>'partner.index', 'uses'=>'Admin\PartnersController@index']);
-  Route::get('account/company', ['as'=>'company.index', 'uses'=>'Admin\CompanyController@index']);
-  Route::get('account/get_status', ['as' => 'account.status', 'uses'=>'Admin\AccountController@get_status']);
+  Route::get('/account/alumnus', 'Admin\AlumnusController@get_graduate')->name('alumnus.get_graduate');
+  Route::get('/account/partner', 'Admin\PartnersController@index')->name('partner.index');
+  Route::get('/account/company', 'Admin\CompanyController@index')->name('company.index');
+  Route::get('/account/get_status','Admin\AccountController@get_status')->name('account.status');
 
 
 
