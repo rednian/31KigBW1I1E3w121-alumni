@@ -22,11 +22,15 @@ Route::get('/', function () {
 */
 Route::prefix('admin')->group(function () {
 
+
   //login
-  Route::get('login', 'Admin\AuthController@index');
-////    Route::post('login','Admin\AdminAuth\AuthController@login');
-////    Route::get('logout','Admin\AdminAuth\AuthController@logout');
-//
+  Route::get('login','Admin\Auth\LoginController@show_form');
+//  Route::post('login','Admin\AdminAuth\AuthController@login');
+//  Route::get('logout','Admin\AdminAuth\AuthController@logout');
+
+// Registration Routes...
+//  Route::get('admin/register', 'AdminAuth\AuthController@showRegistrationForm');
+//  Route::post('admin/register', 'AdminAuth\AuthController@register');
 
 
 //account
