@@ -24,26 +24,26 @@
     <link href="{{ asset('public/css/tor.css') }}" rel="stylesheet">
     <link href="{{ asset('public/css/visit.css') }}" rel="stylesheet">
     <link href="{{ asset('public/css/custom.css') }}" rel="stylesheet">
-    @yield('style')
+    @yield('links')
 
 </head>
 <body>
     
-    
-    @if(Request::segment(1) == 'login' )
+    @if(Request::segment(1) == '' )
         
+        @yield('content')
 
-    @yield('content')
-
-           
     @else
 
         @include('layouts/alumnus/header')
         @include('layouts/alumnus/nav')
-        @include('layouts/alumnus/sidebar')
-        
-        
-        <div class="main-content">
+        <!-- @include('layouts/alumnus/sidebar') -->
+        @yield('content')
+    
+    @endif
+            
+
+       <!--  <div class="main-content">
             <div class="container">
                 <div class="row">
                     
@@ -106,22 +106,23 @@
                     </div>
                     
                     <div class="col-md-6 s-pad">
-                        @yield('content')
+
                     </div>
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
-    @endif
 
     
         
 <script src="{{ asset('public/js/jquery.min.js') }}"></script>
 <script src="{{ asset('public/js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('public/js/moment.js') }}"></script>
+<script src="{{ asset('public/js/moment.min.js') }}"></script>
+@yield('script')
+
 <script>
     
     function log(a){
@@ -129,7 +130,6 @@
     }
 
 </script>
-@yield('script')
 
 </body>
 </html>

@@ -1,3 +1,10 @@
+<style>
+    .signout:hover {
+        text-decoration: none;
+    }
+</style>
+
+
 <header class="header" style="padding-top:10px;">
     <div class="container">
         <a href="index.html" class="pull-left">
@@ -5,7 +12,17 @@
         </a>
         <div class="alumni-type pull-left">
             <span class="myriad f-11">Access Type: </span>
-            <span class="myriad f-11">Alumnus</span>
+            <span class="myriad f-11">
+                @if(Auth::check())
+
+                    {{ ucfirst($user->account_type) }}
+
+                @else
+
+                    Unknown
+
+                @endif
+            </span>
         </div>
         <ul class="notifs pull-left">
             <li>
@@ -18,11 +35,14 @@
             </li>
         </ul>
         <div class="head-welcome pull-right">
-            <img src="{{url('public/images/don.jpg')}}" alt="">
-            <div class="pull-left mr-15">
-                <h6 class="c-white f-10 mt-3 pull-left mr-5">Welcome:</h6><a href="" class="f-13 c-neon" style="line">Don Del Rosario</a>
-                <p class="c-white f-10 mb-0" style="margin-left:50px;">Librarian</p>
+            
+            <div class="sign-out pull-right">
+                <a href="{{ route('logout') }}" class='signout'>
+                    <span class="myriad f-11 f-white m-5">Sign out</span>
+                    <img src="{{url('public/images/signout.png')}}" style="width:20px;"">
+                </a>
             </div>
+            <!-- <a class="btn btn-xs btn-primary" href="{{ route('logout') }}">Logout</a> -->
         </div>
     </div>
 </header>
