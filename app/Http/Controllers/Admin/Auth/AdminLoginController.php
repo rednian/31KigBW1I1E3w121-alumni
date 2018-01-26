@@ -10,7 +10,7 @@ class AdminLoginController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('guest:admin');
+    $this->middleware('guest:admin',['except'=>'logout']);
   }
 
 
@@ -24,11 +24,18 @@ class AdminLoginController extends Controller
   {
     if(Auth::guard('admin')->attempt(['username'=>$request->username,'password'=>$request->password])){
 
-      return redirect()->intended(route('admin.account.index'));
+      return redirect()->intended(route('account.index'));
 
     }
 
     return redirect()->back()->withInput($request->only('username'));
+  }
+
+  public function logout()
+  {
+    Auth::guard('admin')->logout();
+
+    return redirect()->route('admin.login');
   }
 
 }

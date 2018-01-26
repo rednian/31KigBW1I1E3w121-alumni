@@ -118,10 +118,10 @@
                                             </div>
                                             <div class="oh" style="padding-top:5px;padding-right:15px">
                                                 <a href="" data-toggle="tooltip"
-                                                   title="{{$user['created_at']->format('M d, Y h:i:s a')}}"
+                                                   title="{{$user['created_at']->format('F d, Y h:i:s a')}}"
                                                    class="f-10 c-bright-green pull-left">
                                                     Registered Date: <span
-                                                            class="c-sdark">{{$user['created_at']->format('M d, Y')}}</span>
+                                                            class="c-sdark">{{$user['created_at']->format('F d, Y')}}</span>
                                                 </a>
 
                                             </div>
