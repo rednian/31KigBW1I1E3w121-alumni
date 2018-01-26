@@ -20,80 +20,34 @@ Route::get('/', function () {
  | Admin Routes
  |----------------------------------------------------------------------------------------------------------------------
 */
-Route::prefix('admin')->group(function () {
 
+//login
+Route::group(['prefix' => 'admin','middleware' => 'guest:admin'], function () {
 
-  //login
-  Route::get('/login','Admin\Auth\AdminLoginController@show_form')->name('admin.login');
-  Route::post('/login','Admin\Auth\AdminLoginController@login')->name('admin.login.submit');
-//  Route::get('logout','Admin\AdminAuth\AuthController@logout');
+  Route::get('/login', 'Admin\Auth\AdminLoginController@show_form')->name('admin.login');
+  Route::post('/login', 'Admin\Auth\AdminLoginController@login')->name('admin.login.submit');
+  Route::get('/logout', 'Admin\Auth\AdminLoginController@logout')->name('admin.logout');
 
-// Registration Routes...
-//  Route::get('admin/register', 'AdminAuth\AuthController@showRegistrationForm');
-//  Route::post('admin/register', 'AdminAuth\AuthController@register');
+});
 
+//authorized user access after login
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 
-//account
+  //account
   Route::get('/account/alumnus', 'Admin\AlumnusController@get_graduate')->name('alumnus.get_graduate');
   Route::get('/account/partner', 'Admin\PartnersController@index')->name('partner.index');
   Route::get('/account/company', 'Admin\CompanyController@index')->name('company.index');
-  Route::get('/account/get_status','Admin\AccountController@get_status')->name('account.status');
-
-
-
-
+  Route::get('/account/get_status', 'Admin\AccountController@get_status')->name('account.status');
 
 
   //company
-  Route::get('company/visitor', ['as' => 'company.visitor', 'uses' => 'Admin\CompanyController@visitor']);
+  Route::get('company/visitor', 'Admin\CompanyController@visitor')->name('company.visitor');
 
 
   Route::resource('advertisement', 'Admin\AdvertisementController');
   Route::resource('alumnus', 'Admin\AlumnusController');
   Route::resource('account', 'Admin\AccountController');
   Route::resource('company', 'Admin\CompanyController');
-
-
-
-
-//
-//
-//
-//  Route::get('/', 'Admin\AdminAuth\AuthController@showLoginForm');
-////    Route::post('login','Admin\AdminAuth\AuthController@login');
-////    Route::get('logout','Admin\AdminAuth\AuthController@logout');
-//
-//
-//
-//
-
-//
-//
-//
-;
-//
-//
-//
-//
-
-//
-////  Route::get('account/partner', 'Admin\PartnersController@index');
-//  Route::get('account/partner', [
-//    'as'=>'partner.index',
-//    'uses'=>'Admin\PartnersController@index'
-//  ]);
-//
-//
-//
-//
-//
-
-//
-//
-//
-//
-
-
 
 
 });

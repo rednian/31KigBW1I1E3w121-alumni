@@ -23,6 +23,7 @@ class CreateAdminModelsTable extends Migration
             $table->string('password');
             $table->tinyInteger('status')->default('1');
             $table->string('image_path');
+            $table->string('remember_token');
             $table->timestamps();
         });
     }
