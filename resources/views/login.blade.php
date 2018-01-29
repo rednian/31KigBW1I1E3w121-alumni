@@ -1,19 +1,7 @@
 
 @extends('layouts/alumnus/alumnus-master')
 
-
 @section('content')
-
-<!-- <form action="{{ route('loginValidate') }}" method="POST">
-	{{ csrf_field() }}
-		
-	<input type="text" class="username" name="username">
-	<input type="password" class="password" name="password">
-
-	<button>Submit</button>
-
-</form>
- -->
 
 <div class="container">
             
@@ -22,19 +10,20 @@
         <div class="col-lg-3"></div>
         <div class="col-lg-6">
             
-            <form method="GET" class="form-horizontal" action="{{ route('loginValidate') }}" style="margin-top:150px;">
 
+            <form method="POST" class="form-horizontal" action="{{ route('loginValidate') }}" style="margin-top:150px;">
+                {{ csrf_field() }}
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="username">Email:</label>
+                    <label class="control-label col-sm-2" for="username">Username:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" value="{{ old('username') }}">
+                        <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" value="{{ old('username') }}" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="password">Password:</label>
                     <div class="col-sm-10">          
-                        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" value="{{ old('password') }}">
+                        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" value="{{ old('password') }}" required>
                     </div>
                 </div>
 
@@ -45,7 +34,8 @@
                 </div>
             </form>
             
-            
+            @include('layouts/alumnus/messages')
+                       
 
         </div>
         <div class="col-lg-3"></div>
@@ -54,17 +44,10 @@
 
 </div>
 
+<<<<<<< HEAD
 
 
 
-@endsection
-
-@section('script')
-	
-	
-<script>
-	
-
-</script>
-
+=======
+>>>>>>> alumnus
 @endsection

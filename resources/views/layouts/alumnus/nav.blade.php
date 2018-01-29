@@ -10,9 +10,7 @@
             <li><a href="reports_tesda.html">           Application     </a></li>
             <li><a href="">                             My Account      </a></li>
             <li><a href="">                             Download        </a></li>
-        </ul>
-        
-    
+        </ul>    
         <div class="alumnus-search pull-right">
             <div class="dropdown pull-left">
               <button class="btn btn-default btn-sm dropdown-toggle alumnus-btn" type="button" data-toggle="dropdown">Alumnus
@@ -31,6 +29,20 @@
 
     </div>
 </div>
-<div class="greetings-pane myriad">
-    <h6><b>Greetings!!:</b> <span>Mr. Del Rosario, you can update your CV for additional information and have a privilege  to be hired...</span></h6>
+<div class="greetings-pane myriad" style="margin-top:-25px;">
+    <h6>
+        <b>Greetings!! </b> <span>
+        
+        
+        @if(Auth::check() && $user)
+            
+            {{ $user->alumnus_info->student_per_info->lname }}
+            
+        @else
+
+            No Name
+
+        @endif
+        you can update your CV for additional information and have a privilege  to be hired...</span>
+    </h6>
 </div>

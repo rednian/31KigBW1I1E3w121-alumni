@@ -13,7 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('alumnus.index', function ($view) {
+            
+            dd(auth()->user());
+
+        });
     }
 
     /**
