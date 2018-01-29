@@ -131,12 +131,13 @@
 
 													else{
 														if($diff->d > 1){
-															echo $diff->d . " days";
+															echo $post_date->format('F d');
 														}
 														if($diff->d == 1){
-															echo "Yesterday at " .date_format($post_date, 'h:i a');
+															echo "Yesterday at " . date_format($post_date, 'h:i a');
 														}
-														else{
+														
+														if($diff->d == 0){
 
 															if($diff->i > 1){
 																echo $diff->i . " minute";
@@ -154,7 +155,6 @@
 																}
 
 															}
-
 														}
 													}
 												}
@@ -186,27 +186,9 @@
 
 
 
-
-
+										
 										<div class="comments-section">
-											
-											<div class="comment-content">
-
-												<div class="single-post-head">
-													<img src="{{url('public/images/dale.jpg')}}"" class="pull-left">
-													<div class="company-info pull-left">
-														<h6>Dale P. Blanco</h6>
-														<span>Bachelor of Science in Information Technology</span>
-													</div>
-													<span class="pull-right post-time">5 mins ago</span>
-												</div>
-
-												<div class="single-post-body">
-													<p class="minimize"> This is my comment. </p>
-												</div>
-
-											</div>
-
+													
 											<div class="comment-content">
 
 												<div class="single-post-head">

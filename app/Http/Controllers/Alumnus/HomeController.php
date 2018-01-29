@@ -34,8 +34,8 @@ class HomeController extends Controller
 
 	public function posts(){
 
-		$posts = Posts::with('company', 'comments', 'comments.company_comments')->get();
-		dd($posts);
+		$posts = Posts::with('company', 'comments', 'comments.company_comments', 'comments.alumnus_comments')->get();
+
 		return $posts;
 
 	}

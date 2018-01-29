@@ -15,4 +15,8 @@ class Comments extends Model
 
     }
 
+    public function alumnus_comments(){
+    	return $this->belongsTo('Alumni\Stud_sch_info', 'ssi_id');
+    }
+
 }
