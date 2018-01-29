@@ -22,7 +22,7 @@ class AdminModel extends Authenticatable
   ];
 
   protected $fillable = [
-    'fname','midname','lastname','department','username','password','image_path'
+    'fname','midname','lastname','position','department','username','password','image_path'
   ];
 
 }

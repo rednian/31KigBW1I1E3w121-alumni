@@ -28,9 +28,9 @@ class AccountController extends Controller
      */
     public function index()
     {
-         $admin_user = AdminModel::all()->sortBy('user_id');
+         $users = AdminModel::paginate(6);
 
-        return view('admin.account.account',compact('admin_user'));
+        return view('admin.account.account',compact('users'));
     }
 
 
@@ -123,7 +123,11 @@ class AccountController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $user =  AdminModel::find($id);
+
+
+//        return $user->delete() ? true: false;
+
     }
 
 
