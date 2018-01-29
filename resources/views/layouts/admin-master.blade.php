@@ -23,8 +23,8 @@
     <link href="{{ asset('public/css/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('public/css/tor.css') }}" rel="stylesheet">
     <link href="{{ asset('public/css/visit.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/custom.css') }}" rel="stylesheet">
     @yield('style')
+    <link href="{{ asset('public/css/custom.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -36,6 +36,7 @@
 <script src="{{ asset('public/js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('public/js/moment.js') }}"></script>
+<script src="{{ asset('public/js/custom.js') }}"></script>
 @yield('script')
 
 </body>

@@ -2,13 +2,25 @@
 
 namespace Alumni\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Alumni\Http\Requests\Account;
 use Alumni\Http\Controllers\Controller;
 use Alumni\Model\AdminModel;
+use Illuminate\Support\Facades\Storage;
+use Session;
+
 
 class AccountController extends Controller
 {
+
+    public function __construct()
+    {
+
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +28,11 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('admin.account');
+         $admin_user = AdminModel::all()->sortBy('user_id');
+
+        return view('admin.account.account',compact('admin_user'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,9 +52,32 @@ class AccountController extends Controller
      */
     public function store(Account $request)
     {
+        if($request->hasFile('image')){
+
+            $date = Carbon::now();
+            $image = $request->file('image');
+            $image_extension = $image->clientExtension();
+
+            if($image->isValid()){
+
+                //rename the image file to username and date uploaded
+                $image_name = $request['username'].'_'.$date->format('m-d-Y').'.'.$image_extension;
+
+                $image = $request->image->storeAs('admin',$image_name);
+
+                $request['image_path'] = $image;
+            }
+
+        }
+        else{
+            $request['image_path']= 'default/user.png';
+        }
+
+        $request['password'] = Hash::make($request->password);
+
         AdminModel::create($request->all());
-//        Session::flash('error','');
-        Session::flash('success','');
+
+        Session::flash('success','Account successfully created.');
         return back();
     }
 
@@ -86,5 +124,17 @@ class AccountController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function get_status(Request $request){
+
+
+//        return ($request->input('status'));
+
+//        return response()->json([
+//          'name' => 'Abigail',
+//          'state' => 'CA'
+//        ]);
     }
 }

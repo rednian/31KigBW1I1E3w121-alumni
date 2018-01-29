@@ -24,14 +24,14 @@ class Account extends FormRequest
     public function rules()
     {
         return [
-          'fname' => 'required|alpha|min:3|max:255',
-          'midname' => 'required|alpha|max:255',
-          'lastname' => 'required|alpha|max:255',
-          'department' => 'required|alpha|max:255',
-          'position' => 'required|max:255',
-          'password' => 'required|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/|confirmed',
-//          'image_path' => 'required|max:255',
-          'username' => 'required|unique:admin,username|max:255',
+          'fname' => 'required|alpha_spaces|min:3|max:255',
+          'midname' => 'bail|alpha_spaces|min:3|max:255',
+          'lastname' => 'required|alpha_spaces|min:3|max:255',
+          'department' => 'required|alpha_spaces|min:3|max:255',
+          'position' => 'required|alpha_spaces|min:3|max:255',
+          'password' => 'required|different:username|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X]).+$/|confirmed' ,
+           'image_path' => 'image|mimes:jpeg,png,jpg|max:2048',
+          'username' => 'required|unique:admin,username|min:5|max:255',
         ];
     }
 }

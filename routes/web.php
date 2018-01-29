@@ -12,51 +12,52 @@
 */
 
 Route::get('/', function () {
-    return 'welcome';
+  return 'welcome';
 });
-
-//Route::get('/','Admin\HomeController@index');
 
 /*
  |----------------------------------------------------------------------------------------------------------------------
  | Admin Routes
  |----------------------------------------------------------------------------------------------------------------------
 */
-Route::prefix('admin')->group(function () {
 
-    //login
+//login
+Route::group(['prefix' => 'admin','middleware' => 'guest:admin'], function () {
 
-    Route::get('login','Admin\AdminAuth\AuthController@showLoginForm');
-//    Route::post('login','Admin\AdminAuth\AuthController@login');
-//    Route::get('logout','Admin\AdminAuth\AuthController@logout');
-
-
-    Route::get('/','Admin\AdminAuth\AuthController@showLoginForm');
-//    Route::post('login','Admin\AdminAuth\AuthController@login');
-//    Route::get('logout','Admin\AdminAuth\AuthController@logout');
-
-
-    Route::get('company/visitor',[
-        'as' =>'company.visitor',
-        'uses'=>'Admin\CompanyController@visitor'
-    ]);
-
-    Route::resource('alumni','Admin\AlumnusController');
-
-	Route::get('/admin/alumni','Admin\AlumnusController@index');
-
-    Route::resource('account','Admin\AccountController');
-
-    Route::resource('advertisement','Admin\AdvertisementController');
-
-
-    Route::resource('account','Admin\AccountController');
-
-    Route::resource('advertisement','Admin\AdvertisementController');
-
-    Route::get('/admin/alumni','Admin\AlumnusController@index');
+  Route::get('/login', 'Admin\Auth\AdminLoginController@show_form')->name('admin.login');
+  Route::post('/login', 'Admin\Auth\AdminLoginController@login')->name('admin.login.submit');
+  Route::get('/logout', 'Admin\Auth\AdminLoginController@logout')->name('admin.logout');
 
 });
+
+//authorized user access after login
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+
+  //account
+  Route::get('/account/alumnus', 'Admin\AlumnusController@get_graduate')->name('alumnus.get_graduate');
+  Route::get('/account/partner', 'Admin\PartnersController@index')->name('partner.index');
+  Route::get('/account/company', 'Admin\CompanyController@index')->name('company.index');
+  Route::get('/account/get_status', 'Admin\AccountController@get_status')->name('account.status');
+
+
+  //company
+  Route::get('company/visitor', 'Admin\CompanyController@visitor')->name('company.visitor');
+
+
+  Route::resource('advertisement', 'Admin\AdvertisementController');
+  Route::resource('alumnus', 'Admin\AlumnusController');
+  Route::resource('account', 'Admin\AccountController');
+  Route::resource('company', 'Admin\CompanyController');
+
+
+});
+
+/*
+ |----------------------------------------------------------------------------------------------------------------------
+ | Company Routes
+ |----------------------------------------------------------------------------------------------------------------------
+*/
+
 
 /*
  |----------------------------------------------------------------------------------------------------------------------
@@ -65,11 +66,13 @@ Route::prefix('admin')->group(function () {
 */
 
 
+
 Route::get('/', ['as' => 'login', 'uses' => 'Account@index']);
 
-Route::get('/logout', ['as' => 'logout', 'uses' => 'Account@logout']);
+
 
 Route::post('/loginValidate', [ 'as' => 'loginValidate', 'uses' => 'Account@logIn']);
+
 
 
 Route::get('/home', ['as' => 'home', 'uses' => 'Alumnus\HomeController@index']);
