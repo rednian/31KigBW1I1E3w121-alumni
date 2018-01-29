@@ -185,8 +185,8 @@
 										
 
 
-
-
+										<!-- Comments -->
+										
 
 										<div class="comments-section">
 											
