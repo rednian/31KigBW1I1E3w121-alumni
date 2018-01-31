@@ -11,13 +11,12 @@ class CompanyController extends Controller
 
     public function index()
     {
-        return 'index';
-
+        return view('admin.company');
     }
 
     public function visitor()
     {
-        return view('admin.company');
+
     }
 
     /**
