@@ -1,3 +1,4 @@
+/.phpintel
 /node_modules
 /public/hot
 /public/storage
@@ -10,7 +11,11 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 <<<<<<< HEAD
+<<<<<<< HEAD
 .env
+=======
+
+>>>>>>> 02118d5454ff44d481605bcf2fb3186f7f5b322c
 =======
 
 >>>>>>> 02118d5454ff44d481605bcf2fb3186f7f5b322c

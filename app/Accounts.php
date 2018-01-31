@@ -22,5 +22,12 @@ class Accounts extends Model
 	}
 
 	
+
+	public function logout(){
+
+		Auth::logout();
+		return redirect()->route('/');
+
+	}
 		
 }

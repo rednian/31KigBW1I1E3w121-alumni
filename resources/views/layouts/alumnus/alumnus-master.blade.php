@@ -129,6 +129,18 @@
         console.log(a)
     }
 
+    $(document).ready(function(){
+
+        $.get('<?php echo route("get_image") ?>', function(data) {
+
+            var file_name = data.image_name + "." + data.type;
+
+            $('.auth_image').attr('src', "{{url('public/storage/alumnus_images')}}/"+file_name);
+
+        });
+
+    });
+
 </script>
 
 </body>

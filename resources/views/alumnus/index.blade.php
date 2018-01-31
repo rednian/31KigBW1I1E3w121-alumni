@@ -6,6 +6,7 @@
     <link href="{{ asset('public/plugins/owl_carousel/dist/assets/owl.theme.default.css') }}" rel="stylesheet">
 	
 	<style>
+
 		.comp_logo {
 			width:50px;
 		}
@@ -18,6 +19,23 @@
 		.company_post:hover {
 			box-shadow: 10px 10px 20px 10px #ccc;
 		}
+		.comments-label:hover{
+			cursor: pointer;
+		}
+		.replies-section{
+			padding-left:30px;
+		}
+		textarea.reply {
+		    min-width:450px;
+		    min-height:34px;
+		    height:30px;
+		    resize:none;
+		    font-size:12px;
+		    overflow-x:hidden;
+		    overflow-y:hidden;    
+		    padding:5px 5px 5px 10px;    
+		}
+
 	</style>
 
 @endsection
@@ -30,87 +48,21 @@
 			<div class="row">
 				
 				<div class="col-md-12 col-lg-3 s-pad bg-white">
-					<div class="profile-area">
-						<div class="profile-head">
-							<img src="{{url('public/images/don.jpg')}}">
-							
-							@if($user)
-							<h5>
-								{{ $user->alumnus_info->student_per_info->fname }} {{ $user->alumnus_info->student_per_info->mname[0] }}. {{ $user->alumnus_info->student_per_info->lname }}
-							</h5>
-
-					
-							<h6>
-								
-								{{ $user->alumnus_info->stud_program[0]->program_list->prog_name }}
-								
-							</h6>
-
-							@endif
-						</div>
-					</div>
-					<div class="profile-nav">
-						<ul>
-							<li>
-								<i class="fa fa-fw fa-user f-20 c-lighter pull-left"></i>
-								<a href="profile.html">Profile</a>
-							</li>
-							<li>
-								<i class="fa fa-fw fa-briefcase f-20 c-lighter pull-left"></i>
-								<a href="jobs.html">Jobs</a>
-							</li>
-							<li>
-								<i class="fa fa-fw fa-envelope f-20 c-lighter pull-left"></i>
-								<a href="inbox.html">Inbox</a>
-							</li>
-							<li>
-								<i class="fa fa-fw fa-space-shuttle f-20 c-lighter pull-left"></i>
-								<a href="application.html">Applications</a>
-							</li>
-							<li>
-								<i class="fa fa-fw fa-lock f-20 c-lighter pull-left"></i>
-								<a href="myaccount.html">Accounts</a>
-							</li>
-							<li>
-								<i class="fa fa-fw fa-pencil-square f-20 c-lighter pull-left"></i>
-								<a href="#">Post</a>
-							</li>
-							<li>
-								<i class="fa fa-fw fa-mortar-board f-20 c-lighter pull-left"></i>
-								<a href="batch.html">Batch</a>
-							</li>
-							<li>
-								<i class="fa fa-fw fa-file-text f-20 c-lighter pull-left"></i>
-								<a href="tor.html">TOR</a>
-							</li>
-							<li>
-								<i class="fa fa-fw fa-group f-20 c-lighter pull-left"></i>
-								<a href="about.html">About Us</a>
-							</li>
-							<li>
-								<i class="fa fa-fw fa-question-circle f-20 c-lighter pull-left"></i>
-								<a href="help.html">Help</a>
-							</li>
-						</ul>
-						<div class="profile-social">
-							<img src="{{url('public/images/facebook-ico.png')}}">
-							<img src="{{url('public/images/twitter-ico.png')}}">
-						</div>
-					</div>
+					 @include('layouts/alumnus/sidebar')
 				</div>
 				
 				<div class="col-md-6 s-pad">
 					<div class="posts-pane">
 						@if($posts)	
 
-							<?php foreach ($posts as $key => $value):?>
+							<?php foreach ($posts as $post_key => $value):?>
 								
 								<div class="single-post company_post" >
 									<div class="single-post-head">
 										<img src="{{url('public/storage/company_logos')}}/<?php echo $value['company']['company_logo']?>" class="pull-left comp_logo">
 										<div class="company-info pull-left">
-											<h6><?php echo  strtoupper($value['company']['company_name']) ?></h6>
-											<span><?php echo  $value['company']['address']; ?></span>
+											<h6><?php echo strtoupper($value['company']['company_name']) ?></h6>
+											<span><?php echo $value['company']['address']; ?></span>
 										</div>
 										<span class="pull-right post-time" style="font-size: 10px;">
 											
@@ -123,7 +75,7 @@
 												if($diff->y > 0){
 													echo $diff->y . " year(s) ago";
 												}
-												else{
+												if($diff->y <= 1){
 
 													if($diff->m > 0){
 														echo $diff->m . " month(s) ago";
@@ -138,10 +90,10 @@
 														}
 														else{
 
-															if($diff->i > 1){
+															if($diff->i == 1){
 																echo $diff->i . " minute";
 															}
-															if($diff->i >= 1){
+															if($diff->i > 1){
 																echo $diff->i . " minutes";
 															}
 															else{
@@ -158,8 +110,6 @@
 														}
 													}
 												}
-
-
 											?>
 
 										</span>
@@ -168,9 +118,9 @@
 									<div class="single-post-body">
 										@if($value->position)
 
-											<h5><span>Position: </span><a href="#" class="c-green post_position"> <?php echo  $value->position ?> </a></h5><br>	
+											<h5><span>Position: </span><a href="#" class="c-green post_position"> <?php echo $value->position ?> </a></h5><br>	
 											<p class="minimize"> <?php echo  $value->post_content ?> </p>
-											<h5><span>Salary: </span><a href="#" class="c-green post_position"><?php echo  ($value->salary) ?> </a></h5><br>	
+											<h5><span>Salary: </span><a href="#" class="c-green post_position"><?php echo ($value->salary) ?> </a></h5><br>	
 										@endif
 
 										@if($value->img)
@@ -178,59 +128,163 @@
 											<img src="{{url('public/storage/post_images')}}/<?php echo  $value->img?>" class='img-responsive'>
 
 										@endif
+
+										<div class="nice-not">
+											<a class="pull-right f-12" href="#">- Poor</a>
+											<a class="pull-right f-12" href="#">+ Nice</a>		
+										</div>
 									</div>
 									
 									<div class="single-post-footer">
-										<a href="#" class="comments-label">Comments</a>	
-										
-
+										@if(count($value['comments']) >=3 && count($value['comments']) <= 10)
+										<div>
+											<a class='comments-label more_comments' post-key='{{$post_key}}'> View {{ count($value['comments']) - 2 }} more comments</a>
+										</div>
+										@elseif(count($value['comments']) > 10)
+										<div>
+											<a class='comments-label more_comments' post-key='{{$post_key}}'>View previous comments</a>
+										</div>
+										@elseif(count($value['comments']) <= 2)
+										<div>
+											<a class='comments-label'>Comments</a>
+										</div>
+										@endif
 
 										<!-- Comments -->
 										
-
-										<div class="comments-section">
+										@foreach($value['comments'] as $comment_key => $comment)
 											
-											<div class="comment-content">
+											@if($comment_key >=2)
+												<div class="comments-section hidden comment{{$post_key}}">
+											@else
+												<div class="comments-section">
+											@endif
 
-												<div class="single-post-head">
-													<img src="{{url('public/images/dale.jpg')}}"" class="pull-left">
-													<div class="company-info pull-left">
-														<h6>Dale P. Blanco</h6>
-														<span>Bachelor of Science in Information Technology</span>
-													</div>
-													<span class="pull-right post-time">5 mins ago</span>
-												</div>
+												<div class="comment-content">
+													
+														<div class="single-post-head">
+															@if($comment['company_info'])
+																<img src="{{url('public/storage/company_logos')}}/<?php echo $comment['company_info']->company_logo ?>" class="pull-left" style="width:35px;">
+															@else
+																<img src="{{url('public/storage/alumnus_images')}}/<?php echo $comment['alumnus_info']['student_per_info']['stud_image']->image_name.'.'.$comment['alumnus_info']['student_per_info']['stud_image']->type?>" class="pull-left img-circle">
+															@endif
+													
+															<div class="company-info pull-left">
+																<h6>
+																	@if($comment['company_info'])
+																		{{ strtoupper($comment['company_info']->company_name) }}
+																	@else
+																		{{  
+																			ucfirst($comment['alumnus_info']['student_per_info']->fname) . " " . 
+																			ucfirst($comment['alumnus_info']['student_per_info']->mname[0]) . ". " .
+																			ucfirst($comment['alumnus_info']['student_per_info']->lname)  
+																		}}
+																	@endif
+																</h6>
+																<span>
+																	@if($comment['company_info'])
+																		{{ ucfirst($comment['company_info']->address) }}
+																	@else
+																		{{ $comment['alumnus_info']['stud_program'][0]['program_list']->prog_name }}
+																	@endif
+																</span>
+																	
+															</div>
+															<span class="pull-right post-time">5 mins ago</span>
+														</div>
 
-												<div class="single-post-body">
-													<p class="minimize"> This is my comment. </p>
+														<div class="single-post-body no-margin no-padding no-border">
+															<div>
+																<p class="minimize f-12">
+																	{{ $comment->content }}
+																</p>
+															</div>
+
+														</div>
+
+
+														<div class="single-post-footer">
+															
+																<div style="padding-bottom: 20px;padding-left: 0px;font-size: 10px; padding-left: 15px;">
+
+																	<a href="#" class="comments-label show_reply" comment-key="{{ $comment_key }}">
+																		Reply
+																	</a>
+																	@if(count($comment['replies']))
+																		<span class="comments-label"> • </span>
+																		<small class='comments-label'>({{ count($comment['replies']) }})</small>
+																		<a href="#" class="comments-label view_replies" comment-key='{{ $comment_key }}'>View replies</a>	
+																	@endif
+																</div>
+
+															<div class="replies-section">
+
+																@foreach($comment['replies'] as $reply_key => $reply)
+																	
+																	<div class="single-post hidden comment_reply{{$comment_key}}" style="margin-bottom: 0px !important;">
+																		<!-- <pre>{{ $reply['alumnus_info'] }} -->
+																		<div class="single-post-head">
+																			@if($reply['alumnus_info'])
+																				<img src="{{url('public/storage/alumnus_images')}}/{{$reply['alumnus_info']['student_per_info']['stud_image']->image_name}}.{{$reply['alumnus_info']['student_per_info']['stud_image']->type}}" class="img-circle pull-left">
+																			@else
+																				<img src="{{url('public/storage/company_logos')}}/{{$reply['company_info']->company_logo}}" class="img-circle pull-left">
+																				
+																			@endif
+
+																			<div class="company-info pull-left">
+																				@if($reply['alumnus_info'])
+																					<h6>
+																						{{ $reply['alumnus_info']['student_per_info']->fname }}
+																						{{$reply['alumnus_info']['student_per_info']->mname[0]}}. 
+																						{{ $reply['alumnus_info']['student_per_info']->lname}}</h6>
+																					<span>{{ $reply['alumnus_info']['stud_program'][0]['program_list']->prog_name }}</span>
+																				@else
+																					<h6>{{ strtoupper($reply['company_info']->company_name) }}</h6>
+																					<span>{{ $reply['company_info']->address }}</span>
+																				@endif
+																			</div>
+																		</div>
+
+
+																		<div class="single-post-body no-margin no-padding no-border">
+																			<div>
+																				<p class="minimize f-12">
+																					{{ $reply->content }}
+																				</p>
+																			</div>
+																		</div>
+
+																	</div>
+																@endforeach
+
+															  	<div class="post-box post-box-reply{{$comment_key}} hidden comment_reply{{$comment_key}}" style="padding-bottom: 20px;">
+																	<div class="row">
+																		<div class="col-lg-1">
+																			<img class="auth_image img-circle" >
+																		</div>
+																		<div class="col-lg-11">
+																    		<textarea class="autofit form-control reply" placeholder="Write a reply..."></textarea>
+																		</div>
+																	</div>
+															    </div>
+
+															</div>
+
+
+														</div>
+
+														
+													
 												</div>
 
 											</div>
-
-											<div class="comment-content">
-
-												<div class="single-post-head">
-													<img src="{{url('public/images/dale.jpg')}}"" class="pull-left">
-													<div class="company-info pull-left">
-														<h6>Dale P. Blanco</h6>
-														<span>Bachelor of Science in Information Technology</span>
-													</div>
-													<span class="pull-right post-time">5 mins ago</span>
-												</div>
-
-												<div class="single-post-body">
-													<p class="minimize"> This is my comment. </p>
-												</div>
-
-											</div>
-
-										</div>
+										@endforeach
 									
-
-
-
-
-
+										<div class="post-box" style="margin-top: 20px;padding-left: 20px;">
+											<img class="pull-left auth_image img-responsive img-circle">
+											<!-- <input type="text" class="pull-left" placeholder="Write a comment"> -->
+											<textarea class="autofit form-control reply pull-left" placeholder="Post a comment..." style="width:450px !important;margin-left:5px;"></textarea>
+										</div>
 
 									</div>
 								</div>
@@ -339,8 +393,101 @@
 		    });
 
 		});
+	</script>
+
+	<script>
+		
+		$(document).on('click', '.more_comments', function(event) {
+			event.preventDefault();
+
+			var post_key = $(this).attr('post-key');
+
+			$(this).text('');
+
+			$('.comment'+post_key).removeClass('hidden');
+
+		});
+
+		$(document).on('click', '.view_replies', function(event) {
+			event.preventDefault();
+			var comment_key = $(this).attr('comment-key');
 
 
+			if( $('.comment_reply'+comment_key).hasClass('hidden') === true){
+				$('.comment_reply'+comment_key).removeClass('hidden');
+				$(this).html('Hide replies');
+			}
+			else{
+				$('.comment_reply'+comment_key).addClass('hidden');
+				$(this).html('View replies');
+
+			}
+
+		});
+
+		$(document).on('click', '.show_reply', function(event) {
+			event.preventDefault();
+			var comment_key = $(this).attr('comment-key');
+			log(comment_key)
+		});
+
+	</script>
+
+	<script>
+		(function(){
+			var measurer = $('<span>', {
+			   							style: "display:inline-block;word-break:break-word;visibility:hidden;white-space:pre-wrap;"})
+			   .appendTo('body');
+			function initMeasurerFor(textarea){
+			  if(!textarea[0].originalOverflowY){
+			  	textarea[0].originalOverflowY = textarea.css("overflow-y");    
+			  }  
+			  var maxWidth = textarea.css("max-width");
+			  measurer.text(textarea.text())
+			      .css("max-width", maxWidth == "none" ? textarea.width() + "px" : maxWidth)
+			      .css('font',textarea.css('font'))
+			      .css('overflow-y', textarea.css('overflow-y'))
+			      .css("max-height", textarea.css("max-height"))
+			      .css("min-height", textarea.css("min-height"))
+			      .css("min-width", textarea.css("min-width"))
+			      .css("padding", textarea.css("padding"))
+			      .css("border", textarea.css("border"))
+			      .css("box-sizing", textarea.css("box-sizing"))
+			}
+			function updateTextAreaSize(textarea){
+				textarea.height(measurer.height());
+			  var w = measurer.width();
+			  if(textarea[0].originalOverflowY == "auto"){
+			     	var mw = textarea.css("max-width");
+			      if(mw != "none"){
+			     		if(w == parseInt(mw)){
+			      		textarea.css("overflow-y", "auto");
+			     		} else {
+			         	textarea.css("overflow-y", "hidden");
+			     		}
+			      }
+			   }
+			   textarea.width(w + 2);
+			}
+			$('textarea.autofit').on({
+			    input: function(){      
+			      	var text = $(this).val();  
+			        if($(this).attr("preventEnter") == undefined){
+			      	   text = text.replace(/[\n]/g, "<br>&#8203;");
+			        }
+			      	measurer.html(text);                       
+			        updateTextAreaSize($(this));       
+			    },
+			    focus: function(){
+			     initMeasurerFor($(this));
+			    },
+			    keypress: function(e){
+			    	if(e.which == 13 && $(this).attr("preventEnter") != undefined){
+			      	e.preventDefault();
+			      }
+			    }
+			});
+		})();
 	</script>
 
 @endsection

@@ -44,10 +44,4 @@
 
 </div>
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> alumnus
 @endsection

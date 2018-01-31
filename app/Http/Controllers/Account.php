@@ -11,6 +11,8 @@ use Illuminate\Http\RedirectResponse;
 use Alumni\Accounts;
 use Alumni\User;
 use Alumni\Graduates;
+use Alumni\Stud_sch_info;
+use Alumni\Stud_image;
 
 
 
@@ -49,7 +51,6 @@ class Account extends Controller
 
 
     	if(Auth::attempt(["username" => $username, "password" => $password])){
-
     		return redirect()->route('home');
     	}
 
@@ -60,8 +61,6 @@ class Account extends Controller
     		if($register){
 
 				Auth::login($alumni_info);
-
-
     			return redirect()->route('home');
     		}
     		else{
@@ -116,6 +115,16 @@ class Account extends Controller
 		return redirect()->route('login');
 	}
 
+	public function get_image(){
+
+		$ssi_id = Auth::user()->ssi_id;
+
+		$spi_id = Stud_sch_info::find($ssi_id)->spi_id;
+
+		$get_image = Stud_image::where(['spi_id' => $spi_id])->first();
+
+		return response()->json($get_image);
+	}
 
 
 }

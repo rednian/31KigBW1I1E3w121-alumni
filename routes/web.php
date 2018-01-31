@@ -68,13 +68,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 
 
 Route::get('/', ['as' => 'login', 'uses' => 'Account@index']);
-
-
-
 Route::post('/loginValidate', [ 'as' => 'loginValidate', 'uses' => 'Account@logIn']);
-
-
-
 Route::get('/home', ['as' => 'home', 'uses' => 'Alumnus\HomeController@index']);
+Route::get('/logout', 'Account@logout')->name('logout');
+
+// Route::get('/get_image', function() {
+//     return response()->json(['response' => 'This is get method']);
+// })->name('get_image');
+
+Route::get('/get_image', 'Account@get_image')->name('get_image');
 
 // Route::get('/home2', ['as' => 'home2','uses' => 'Alumnus\HomeController@index']);

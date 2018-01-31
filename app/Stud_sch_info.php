@@ -22,4 +22,5 @@ class Stud_sch_info extends Model
     }
 
 
+
 }
