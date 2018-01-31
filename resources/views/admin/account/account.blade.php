@@ -97,9 +97,12 @@
                         </div>
                         <div class="col-xs-5">
                             <ul class="ptb-15 border-bot">
+                                <?php  $link  = ''; ?>
 
                                 @if(!empty($users))
-                                    @include('include.confirm-delete')
+                                    @component('include.confirm-delete',['link'=>$link])
+                                        Are you sure you want to remove this account?
+                                    @endcomponent
 
 
                                 @foreach($users as $user)
