@@ -6,7 +6,7 @@
             <li class="{{ $active == null ? 'active':''}}"><a href="{{route('account.index')}}" class="c-bright-green">System Administrator</a></li>
             <li class="{{ $active == 'alumnus' ? 'active':''}}"><a href="{{route('alumnus.get_graduate')}}" class="c-bright-green">Alumnus</a></li>
             <li class="{{ $active == 'partner' ? 'active':''}}"><a href="{{route('partner.index')}}" class="c-bright-green">Partners</a></li>
-            <li class="{{ $active == 'company' ? 'active':''}}"><a href="{{route('company.index')}}" class="c-bright-green">Company</a></li>
+            <li class="{{ $active == 'company' ? 'active':''}}"><a href="{{route('admin.company.index')}}" class="c-bright-green">Company</a></li>
         </ul>
     </div>
 </div>

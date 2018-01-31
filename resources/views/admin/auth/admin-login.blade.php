@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>VITA | Administrator Login</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('public/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -126,22 +126,43 @@
 <body>
 
 <div class="container">
+    <section class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <section class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Please sign in</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form" method="post" action="{{route('admin.login.submit')}}">
+                        <div class="form-group" {{ $errors->has('username') ? ' has-error' : '' }}>
+                            {{csrf_field()}}
+                            <label for="inputEmail" class="sr-only">Username</label>
+                            <input value="{{old('username')}}" type="text" name="username" id="inputEmail" class="form-control" placeholder="Username"  autofocus>
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="sr-only">Password</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" >
+                        </div>
 
-    <form class="form-signin" method="post" action="{{route('admin.login.submit')}}">
-        {{csrf_field()}}
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Username</label>
-        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Remember me
+                            </label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    </form>
+                </div>
+            </section>
 
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
+    </section>
+
+
 
 </div>
 

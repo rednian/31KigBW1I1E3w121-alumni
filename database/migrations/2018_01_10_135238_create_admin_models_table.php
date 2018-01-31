@@ -19,6 +19,7 @@ class CreateAdminModelsTable extends Migration
             $table->string('midname');
             $table->string('lastname');
             $table->string('department');
+            $table->string('position');
             $table->string('username');
             $table->string('password');
             $table->tinyInteger('status')->default('1');

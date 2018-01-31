@@ -36,7 +36,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
   //account
   Route::get('/account/alumnus', 'Admin\AlumnusController@get_graduate')->name('alumnus.get_graduate');
   Route::get('/account/partner', 'Admin\PartnersController@index')->name('partner.index');
-  Route::get('/account/company', 'Admin\CompanyController@index')->name('company.index');
+  Route::get('/account/company', 'Admin\CompanyController@index')->name('admin.company.index');
   Route::get('/account/get_status', 'Admin\AccountController@get_status')->name('account.status');
 
 

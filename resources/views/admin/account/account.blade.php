@@ -22,6 +22,7 @@
                         <div class="row">
                             <div class="col-xs-7">
                                 @include('include.message')
+
                                 <div class="row">
                                     <form class="inline-block" method="post" action="{{route('account.store')}}"
                                           enctype="multipart/form-data">
@@ -96,17 +97,22 @@
                         </div>
                         <div class="col-xs-5">
                             <ul class="ptb-15 border-bot">
+                                <?php  $link  = ''; ?>
 
-                                @if(!empty($admin_user))
+                                @if(!empty($users))
+                                    @component('include.confirm-delete',['link'=>$link])
+                                        Are you sure you want to remove this account?
+                                    @endcomponent
 
-                                    @foreach($admin_user as $user)
+
+                                @foreach($users as $user)
 
                                         <li class="oh mb-24 admin-profile">
                                             <section class="pull-right clearfix" id="btn-group">
 
                                                 <input {{ $status = $user['status'] == 1 ? 'checked':'' }} class="pull-right" data-size="mini" data-style="slow" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Inactive" type="checkbox">
-                                                <button class="btn btn-default btn-xs"><span class="fa fa-pencil"></span></button>
-                                                <button class="btn btn-default btn-xs"><span class="fa fa-trash-o"></span></button>
+                                                <a id="btn-edit" href="{{route('account.destroy', $user['user_id'])}}" class="btn btn-default btn-xs"><span class="fa fa-pencil"></span></a>
+                                                <a id="btn-delete" href="{{route('account.destroy', $user['user_id'])}}" class="btn btn-default btn-xs"><span class="fa fa-trash-o"></span></a>
                                             </section>
                                             <img src="{{asset('public/storage/'.$user['image_path'])}}" alt=""
                                                  class="pull-left mr-15 img-responsive img-thumbnail" style="max-width:90px;">
@@ -128,6 +134,10 @@
                                         </li>
 
                                     @endforeach
+
+                                    <div class="text-center">
+                                        {!! $users->render() !!}
+                                    </div>
 
                                 @else
                                     <div class="alert alert-info alert-dismissible fade in" role="alert">
@@ -151,9 +161,20 @@
     <script src="{{asset('public/plugins/bootstrap-toggle/toggle-button.min.js')}}"></script>
     <script type="text/javascript">
 
-        $(document).ready(function(){
-            $('#btn-group').removeClass('hide');
 
+        $(document).ready(function(){
+
+
+
+            $('#btn-delete').click(function(e){
+                e.preventDefault();
+
+                $('#confirm-delete').removeClass('hide');
+
+
+            });
+
+            $('#btn-group').removeClass('hide');
 
             $( ".admin-profile" ).hover(
                     function() {
