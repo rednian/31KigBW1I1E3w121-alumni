@@ -11,6 +11,12 @@
                             <h4 class="pull-left c-bright-green normal">Partners</h4>
                             <input type="text" placeholder="Search" class="border-light pull-right">
                         </div>
+                        <section class="row">
+                            <div class="col-xs-12">
+                                <a href="#" class="btn btn-success btn-prime">Create Partner</a>
+                            </div>
+                        </section>
+
                         <div>
                             <ul class="inline-block">
                                 <li class="oh mb-24 mr-15" data-toggle="modal" data-target="#accountModal" style="max-width:300px;">

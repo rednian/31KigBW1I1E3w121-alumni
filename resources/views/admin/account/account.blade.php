@@ -24,23 +24,12 @@
                                 @include('include.message')
 
                                 <div class="row">
-                                    <form class="inline-block" method="post" action="{{route('account.store')}}"
-                                          enctype="multipart/form-data">
+                                    <form class="inline-block" method="post" action="{{route('account.store')}}" enctype="multipart/form-data">
                                         {{csrf_field()}}
                                         <div class="col-xs-4">
 
                                             <img id="blah" src="{{url('public/storage/default/user.png')}}" alt="your image" class="img img-thumbnail img-responsive mb-5"/>
-                                            <input type='file' class="border-light block" onchange="readURL(this);"
-                                                   name="image" style="
-                                                   /*border: 1px solid #008C8C;*/
-                                                   /*background-color: #008C8C;*/
-                                                   /*color: transparent;*/
-                                                   /*display: inline-block;*/
-                                                   /*padding: 6px 12px;*/
-                                                   cursor: pointer;"/>
-                                            {{--<img src="{{url('public/images/profile/kk.png')}}" alt=""--}}
-                                            {{--class="img img-responsive mb-5">--}}
-                                            {{--<button class="btn btn-success btn-prime block">Upload</button>--}}
+                                            <input type='file' class="border-light block" onchange="readURL(this);" name="image" style="cursor: pointer;"/>
                                         </div>
                                         <div class="col-xs-8">
                                             <li class="mb-7 block">

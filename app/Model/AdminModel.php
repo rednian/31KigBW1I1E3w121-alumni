@@ -25,4 +25,9 @@ class AdminModel extends Authenticatable
     'fname','midname','lastname','position','department','username','password','image_path'
   ];
 
+  protected function partner()
+  {
+    return $this->hasMany('Alumni\Partners');
+  }
+
 }
