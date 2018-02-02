@@ -33,7 +33,6 @@ class AccountController extends Controller
         return view('admin.account.account',compact('users'));
     }
 
-
     /**
      * Show the form for creating a new resource.
      *

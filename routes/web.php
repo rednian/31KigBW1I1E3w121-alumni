@@ -23,19 +23,16 @@ Route::get('/', function () {
 
 //login
 Route::group(['prefix' => 'admin','middleware' => 'guest:admin'], function () {
-
   Route::get('/login', 'Admin\Auth\AdminLoginController@show_form')->name('admin.login');
   Route::post('/login', 'Admin\Auth\AdminLoginController@login')->name('admin.login.submit');
-  Route::get('/logout', 'Admin\Auth\AdminLoginController@logout')->name('admin.logout');
 
 });
 
 //authorized user access after login
-Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+Route::group(['prefix' =>'admin', 'middleware' => 'auth:admin'], function () {
 
   //account
   Route::get('/account/alumnus', 'Admin\AlumnusController@get_graduate')->name('alumnus.get_graduate');
-  Route::get('/account/partner', 'Admin\PartnersController@index')->name('partner.index');
   Route::get('/account/company', 'Admin\CompanyController@index')->name('admin.company.index');
   Route::get('/account/get_status', 'Admin\AccountController@get_status')->name('account.status');
 
@@ -44,11 +41,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
   Route::get('company/visitor', 'Admin\CompanyController@visitor')->name('company.visitor');
 
 
+  //resources
   Route::resource('advertisement', 'Admin\AdvertisementController');
   Route::resource('alumnus', 'Admin\AlumnusController');
   Route::resource('account', 'Admin\AccountController');
   Route::resource('company', 'Admin\CompanyController');
+  Route::resource('partner', 'Admin\PartnersController');
 
+  //logout
+  Route::get('/logout', 'Admin\Auth\AdminLoginController@logout')->name('admin.logout');
 
 });
 
@@ -64,7 +65,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
  | Client Routes
  |----------------------------------------------------------------------------------------------------------------------
 */
-
 
 
 Route::get('/', ['as' => 'login', 'uses' => 'Account@index']);
