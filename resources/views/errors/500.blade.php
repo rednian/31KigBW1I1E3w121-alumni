@@ -22,8 +22,7 @@
     <h3 class="font-bold">Internal Server Error</h3>
 
     <div class="error-desc">
-        The server encountered something unexpected that didn't allow it to complete the request. We apologize.<br/>
-        You can go back to main page: <br/><a href="{{url('/')}}" class="btn btn-primary m-t">Dashboard</a>
+        The server encountered something unexpected that didn't allow it to complete the request. Please check your database credentials for this error.
     </div>
 </div>
 

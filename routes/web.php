@@ -1,19 +1,16 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
+|-----------------------------------------------------------------------------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------
+|-----------------------------------------------------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
+| 
 */
 
-Route::get('/', function () {
-  return 'welcome';
-});
 
 /*
  |----------------------------------------------------------------------------------------------------------------------
@@ -31,6 +28,10 @@ Route::group(['prefix' => 'admin','middleware' => 'guest:admin'], function () {
 //authorized user access after login
 Route::group(['prefix' =>'admin', 'middleware' => 'auth:admin'], function () {
 
+//  Route::get('/',function(){
+//    Route::get('/account/company', 'Admin\CompanyController@index')->name('admin.company.index');
+//  });
+
   //account
   Route::get('/account/alumnus', 'Admin\AlumnusController@get_graduate')->name('alumnus.get_graduate');
   Route::get('/account/company', 'Admin\CompanyController@index')->name('admin.company.index');
@@ -39,7 +40,6 @@ Route::group(['prefix' =>'admin', 'middleware' => 'auth:admin'], function () {
 
   //company
   Route::get('company/visitor', 'Admin\CompanyController@visitor')->name('company.visitor');
-
 
   //resources
   Route::resource('advertisement', 'Admin\AdvertisementController');

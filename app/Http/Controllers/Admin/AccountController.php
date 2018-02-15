@@ -10,6 +10,7 @@ use Alumni\Http\Requests\Account;
 use Alumni\Http\Controllers\Controller;
 use Alumni\Model\AdminModel;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Session;
 
 
@@ -78,7 +79,7 @@ class AccountController extends Controller
 
         Session::flash('success','Account successfully created.');
         return back();
-    }
+    }   
 
     /**
      * Display the specified resource.
@@ -111,7 +112,7 @@ class AccountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
