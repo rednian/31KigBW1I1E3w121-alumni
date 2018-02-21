@@ -17,127 +17,195 @@
                     <div class="admin-content bg-white">
                         <div class="head oh border-bot mb-10">
                             <h4 class="pull-left c-bright-green normal">System Administrator</h4>
-                            <input type="text" placeholder="Search" class="border-light pull-right">
                         </div>
-                        <div class="row">
-                            <div class="col-xs-7">
-                                @include('include.message')
 
-                                <div class="row">
-                                    <form class="inline-block" method="post" action="{{route('account.store')}}" enctype="multipart/form-data">
-                                        {{csrf_field()}}
-                                        <div class="col-xs-4">
+                       {{--  <section class="row">
+                            <div class="col-md-12">
+                                 @include('include.message')
+                            </div>
+                        </section> --}}
 
-                                            <img id="blah" src="{{url('public/storage/default/user.png')}}" alt="your image" class="img img-thumbnail img-responsive mb-5"/>
-                                            <input type='file' class="border-light block" onchange="readURL(this);" name="image" style="cursor: pointer;"/>
-                                        </div>
-                                        <div class="col-xs-8">
-                                            <li class="mb-7 block">
-                                                <h6 class="mt-0 f-11 c-sdark mb-3">Firstname</h6>
-                                                <input type="text" class="border-light block" name="fname"
-                                                       value="{{ old('fname') }}" autocomplete="off">
-                                            </li>
-                                            <li class="mb-7 block">
-                                                <h6 class="mt-0 f-11 c-sdark mb-3">Middlename</h6>
-                                                <input type="text" class="border-light block" name="midname"
-                                                       value="{{ old('midname') }}" autocomplete="off">
-                                            </li>
-                                            <li class="mb-7 block">
-                                                <h6 class="mt-0 f-11 c-sdark mb-3">Lastname</h6>
-                                                <input type="text" class="border-light block" name="lastname"
-                                                       value="{{ old('lastname') }}" autocomplete="off">
-                                            </li>
-                                            <li class="mb-7 mr-5">
-                                                <h6 class="mt-0 f-11 c-sdark mb-3">Department</h6>
-                                                <input type="text" class="border-light" style="width:181px;"
-                                                       name="department" value="{{ old('department') }}"
-                                                       autocomplete="off">
-                                            </li>
-                                            <li class="mb-7">
-                                                <h6 class="mt-0 f-11 c-sdark mb-3">Position</h6>
-                                                <input type="text" class="border-light" style="width:181px;"
-                                                       name="position" value="{{ old('position') }}" autocomplete="off">
-                                            </li>
-                                            <li class="mb-7 mr-5">
-                                                <h6 class="mt-0 f-11 c-sdark mb-3">Username</h6>
-                                                <input type="text" class="border-light" style="width:181px;"
-                                                       name="username" value="{{ old('username') }}" autocomplete="off">
-                                            </li>
-                                            <li class="mb-7">
-                                                <h6 class="mt-0 f-11 c-sdark mb-3">Password</h6>
-                                                <input type="text" class="border-light" style="width:181px;"
-                                                       name="password" value="{{ old('password') }}" autocomplete="off">
-                                            </li>
-                                            <li class="mb-7">
-                                                <h6 class="mt-0 f-11 c-sdark mb-3">Confirm Password</h6>
-                                                <input type="text" class="border-light" style="width:181px;"
-                                                       name="password_confirmation"
-                                                       value="{{ old('password_confirmation') }}" autocomplete="off">
-                                            </li>
-                                            <input type="submit" class="btn btn-success btn-prime pull-right"
-                                                   value="Save">
+                        <section class="row">
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <div class="panel panel-success">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Register Administrator Account</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <form class="inline-block" method="post" action="{{route('account.store')}}" enctype="multipart/form-data">
+                                            {{csrf_field()}}
+                                            <section class="row">
+                                                
+                                                <div class="col-xs-4">
+                                                    <img id="blah" src="{{url('public/storage/default/user.png')}}" alt="your image" class="img img-thumbnail img-responsive mb-5"/>
+                                                    <input  accept="image/x-png, image/jpeg" type='file' class="border-light block" onchange="readURL(this);" name="image" style="cursor: pointer;"/>
+                                                </div>
+                                                <div class="col-xs-8">
 
-                                    </form>
+                                                    <div class="form-group {{ $errors->has('fname') ? ' has-error' : '' }}">
+                                                        <label>Firstname<code>*</code></label>
+                                                        <input type="text" class="form-control input-sm" name="fname" value="{{ old('fname') }}" autocomplete="off" autofocus>
+                                                        @if ($errors->has('fname'))
+                                                            <span class="help-block">
+                                                                 <strong>{{ $errors->first('fname') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
 
+                                                    <div class="form-group {{ $errors->has('midname') ? ' has-error' : '' }}">
+                                                        <label>Middlename</label>
+                                                        <input type="text" class="form-control input-sm" name="midname" value="{{ old('midname') }}" autocomplete="off">
+                                                        @if ($errors->has('midname'))
+                                                            <span class="help-block">
+                                                                 <strong>{{ $errors->first('midname') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+
+                                                </div>
+
+                                            </section>
+                                            <section class="row">
+                                                
+                                                <div class="col-xs-12">
+                                               
+                                                    <div class="form-group {{ $errors->has('lastname') ? ' has-error' : '' }}">
+                                                        <label>Lastname<code>*</code></label>
+                                                        <input type="text" class="form-control input-sm" name="lastname" value="{{ old('lastname') }}" autocomplete="off">
+                                                        @if ($errors->has('lastname'))
+                                                            <span class="help-block">
+                                                                 <strong>{{ $errors->first('lastname') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+
+                                                    <div class="form-group {{ $errors->has('department') ? ' has-error' : '' }}">
+                                                        <label>Department<code>*</code></label>
+                                                        <input type="text" class="form-control input-sm" name="department" value="{{ old('department') }}" autocomplete="off">
+                                                        @if ($errors->has('department'))
+                                                            <span class="help-block">
+                                                                 <strong>{{ $errors->first('department') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+
+                                                    <div class="form-group {{ $errors->has('position') ? ' has-error' : '' }}">
+                                                        <label>Position<code>*</code></label>
+                                                        <input type="text" class="form-control input-sm" name="position" value="{{ old('position') }}" autocomplete="off">
+                                                        @if ($errors->has('position'))
+                                                            <span class="help-block">
+                                                                 <strong>{{ $errors->first('position') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+
+                                                    <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
+                                                        <label>Password<code>*</code></label>
+                                                        <input type="text" class="form-control input-sm" name="password" value="{{ old('password') }}" autocomplete="off">
+                                                        @if ($errors->has('password'))
+                                                            <span class="help-block">
+                                                                 <strong>{{ $errors->first('password') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+
+                                                    <div class="form-group {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                                                        <label>Confirm Password<code>*</code></label>
+                                                        <input type="text" class="form-control input-sm" name="password_confirmation" value="{{ old('password_confirmation') }}" autocomplete="off">
+                                                        @if ($errors->has('password_confirmation'))
+                                                            <span class="help-block">
+                                                                 <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+
+                                                     <button type="submit" class="btn btn-success btn-prime pull-right">Save</button>
+
+                                                </div>
+                                            </section>
+                                        </form>
+                                     
                                 </div>
+                              
 
                             </div>
+                            </div>
+                                <div class="col-md-7 col-sm-7 col-xs-12">
 
-                        </div>
-                        <div class="col-xs-5">
-                            <ul class="ptb-15 border-bot">
-                                <?php  $link  = ''; ?>
-
-                                @if(!empty($users))
-                                    @component('include.confirm-delete',['link'=>$link])
-                                        Are you sure you want to remove this account?
-                                    @endcomponent
-
-
-                                @foreach($users as $user)
-
-                                        <li class="oh mb-24 admin-profile">
-                                            <section class="pull-right clearfix" id="btn-group">
-
-                                                <input {{ $status = $user['status'] == 1 ? 'checked':'' }} class="pull-right" data-size="mini" data-style="slow" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Inactive" type="checkbox">
-                                                <a id="btn-edit" href="{{route('account.destroy', $user['user_id'])}}" class="btn btn-default btn-xs"><span class="fa fa-pencil"></span></a>
-                                                <a id="btn-delete" href="{{route('account.destroy', $user['user_id'])}}" class="btn btn-default btn-xs"><span class="fa fa-trash-o"></span></a>
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading clearfix">
+                                            <section class="row">
+                                                <div class="col-xs-7">
+                                                    <h3 class="panel-title pull-left">List of Administrator</h3>
+                                                </div>
+                                                <div class="col-xs-5">
+                                                    <div class="form-group">
+                                                     <input type="text" placeholder="Search" class="form-control input-sm pull-right">
+                                                    </div>
+                                                </div>
                                             </section>
-                                            <img src="{{asset('public/storage/'.$user['image_path'])}}" alt=""
-                                                 class="pull-left mr-15 img-responsive img-thumbnail" style="max-width:90px;">
+                                        </div>
+                                        <div class="panel-body">
+                                            
+                                            <ul class="ptb-15 border-bot">
+                                                <?php  $link  = ''; ?>
 
-                                            <div style="padding-top:0px;" class="mb-15">
-                                                <h4>{{ucwords($user['fname']).' '.ucwords($user['midname']).' '.ucwords($user['lastname']) }}</h4>
-                                                <h6 class="mt-2 f-11 c-sdark">{{ucwords($user['position'])}}</h6>
-                                                <h5 class="mt-3 c-bright-green f-12">{{ucwords($user['department'])}}</h5>
-                                            </div>
-                                            <div class="oh" style="padding-top:5px;padding-right:15px">
-                                                <a href="" data-toggle="tooltip"
-                                                   title="{{$user['created_at']->format('F d, Y h:i:s a')}}"
-                                                   class="f-10 c-bright-green pull-left">
-                                                    Registered Date: <span
-                                                            class="c-sdark">{{$user['created_at']->format('F d, Y')}}</span>
-                                                </a>
+                                                @if(!empty($users))
+                                                    @component('include.confirm-delete',['link'=>$link])
+                                                        Are you sure you want to remove this account?
+                                                    @endcomponent
 
-                                            </div>
-                                        </li>
 
-                                    @endforeach
+                                                @foreach($users as $user)
 
-                                    <div class="text-center">
-                                        {!! $users->render() !!}
+                                                        <li class="oh mb-24 admin-profile">
+                                                            <section class="pull-right clearfix" id="btn-group">
+
+                                                                <input name="status" data-user_id="{{$user['user_id']}}" data-status="{{$user['status']}}" {{ $status = $user['status'] == 1 ? 'checked':'' }} class="pull-right" data-size="mini" data-style="slow" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Inactive" type="checkbox">
+                                                                <a id="btn-edit" href="{{route('account.destroy', $user['user_id'])}}" class="btn btn-default btn-xs"><span class="fa fa-pencil"></span></a>
+                                                                <a id="btn-delete" href="{{route('account.destroy', $user['user_id'])}}" class="btn btn-default btn-xs"><span class="fa fa-trash-o"></span></a>
+                                                            </section>
+                                                            <img src="{{asset('public/storage/'.$user['image_path'])}}" alt=""
+                                                                 class="pull-left mr-15 img-responsive img-thumbnail" style="max-width:90px;">
+
+                                                            <div style="padding-top:0px;" class="mb-15">
+                                                                <h4>{{ucwords($user['fname']).' '.ucwords($user['midname']).' '.ucwords($user['lastname']) }}</h4>
+                                                                <h6 class="mt-2 f-11 c-sdark">{{ucwords($user['position'])}}</h6>
+                                                                <h5 class="mt-3 c-bright-green f-12">{{ucwords($user['department'])}}</h5>
+                                                            </div>
+                                                            <div class="oh" style="padding-top:5px;padding-right:15px">
+                                                                <strong data-toggle="tooltip"
+                                                                   title="{{$user['created_at']->format('F d, Y h:i:s a')}}"
+                                                                   class="f-10 c-bright-green pull-left">
+                                                                    Registered Date: <span class="c-sdark">{{$user['created_at']->format('F d, Y')}}</span>
+                                                                </strong>
+
+                                                            </div>
+                                                        </li>
+
+                                                    @endforeach
+
+                                                    <div class="text-center">
+                                                        {!! $users->render() !!}
+                                                    </div>
+
+                                                @else
+                                                    <div class="alert alert-info alert-dismissible fade in" role="alert">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <strong> </strong> No Account Registered.
+                                                    </div>
+
+                                                @endif
+
+                                            </ul>
+
+                                        </div>
                                     </div>
+                            </div>
+                        </section>
 
-                                @else
-                                    <div class="alert alert-info alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <strong> </strong> No Account Registered.
-                                    </div>
-
-                                @endif
-
-                            </ul>
-                        </div>
+                        
+    
                     </div>
                 </div>
             </div>
@@ -179,27 +247,23 @@
 
         function get_status(){
 
-            $('#btn-status').click(function(){
+            $('input[name="status"]').change(function(argument) {
 
-                var status =  $(this).attr('data-status');
+                  var status =  $(this).attr('data-status') == 1 ? 0 : 1;
+                  var user_id =  $(this).attr('data-user_id');
 
-                $.ajax({
-                    url:'{{route('account.status')}}',
-                    data: {status:  status},
-                    dataType:'html',
-                    success: function (data) {
+                  $.ajax({
+                      url:'{{route('account.status')}}',
+                      data: {status:  status, user_id: user_id, _token: '{{csrf_token()}}'},
+                      dataType:'json',
+                      success: function (data) {
+                        console(data);
+                      }
+                  });
 
-                        if(data == 0){
-
-                            $(this).html('Activate');
-                        }
-                        else{
-                            $(this).html('Deactivate');
-                        }
-                    }
-                });
 
             });
+
         }
 
         function readURL(input) {
