@@ -41,6 +41,7 @@ Route::group(['prefix' =>'admin', 'middleware' => 'auth:admin'], function () {
   //company
   Route::get('company/visitor', 'Admin\CompanyController@visitor')->name('company.visitor');
 
+
   //resources
   Route::resource('advertisement', 'Admin\AdvertisementController');
   Route::resource('alumnus', 'Admin\AlumnusController');

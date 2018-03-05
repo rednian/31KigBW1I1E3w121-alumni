@@ -30,6 +30,7 @@ class Account extends FormRequest
           'department' => 'required|alpha_spaces|min:3|max:255',
           'position' => 'required|alpha_spaces|min:3|max:255',
           'password' => 'required|different:username|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X]).+$/|confirmed' ,
+          'password_confirmation' => 'required' ,
            'image_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
           'username' => 'required|unique:admin,username|min:5|max:255',
         ];
