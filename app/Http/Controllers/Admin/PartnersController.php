@@ -2,6 +2,7 @@
 
 namespace Alumni\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use Alumni\Partners;
 use Illuminate\Http\Request;
 use Alumni\Http\Controllers\Controller;
@@ -53,7 +54,7 @@ class PartnersController extends Controller
                 $image_name = $request['name'] . '_' . $date->format('m-d-Y') . '.' . $image_extension;
                 $image_location = 'public/partner';
 
-                $request->image->storeAs($image_location, $image_name);
+                $request->logo->storeAs($image_location, $image_name);
 
                 $data['logo'] = '/partner/' . $image_name;
             }
@@ -61,8 +62,6 @@ class PartnersController extends Controller
         } else {
             $data['logo'] = 'default/default.png';
         }
-
-
 
         $partner = Partners::create($data);
 
