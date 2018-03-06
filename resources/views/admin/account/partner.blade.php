@@ -134,11 +134,9 @@
                             <label for="title" class="control-label col-sm-3">Address <code>*</code></label>
 
                             <div class="col-sm-9">
-                                <textarea name="address"  value="{{old('address')}}" id="" class="form-control" cols="30" rows="5"></textarea>
+                                <textarea name="address"  value="{{old('address')}}" id="" class="form-control" cols="30" rows="5">{{old('address')}}</textarea>
                                 @if ($errors->has('address'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
+                                    <span class="help-block"><strong>{{ $errors->first('address') }}</strong></span>
                                 @endif
                             </div>
                         </div>

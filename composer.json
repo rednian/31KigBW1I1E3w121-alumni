@@ -4,7 +4,6 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
-    "files": ["app/Http/helpers.php"],
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
@@ -24,6 +23,7 @@
             "database/seeds",
             "database/factories"
         ],
+        "files": ["app/Http/helpers.php"],
         "psr-4": {
             "Alumni\\": "app/"
         }

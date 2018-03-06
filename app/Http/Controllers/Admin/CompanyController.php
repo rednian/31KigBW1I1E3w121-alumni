@@ -8,6 +8,7 @@ use Alumni\Company;
 use Alumni\Accounts;
 use Alumni\Mail\SendEmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Alumni\Http\Controllers\Controller;
 
 class CompanyController extends Controller
@@ -16,8 +17,7 @@ class CompanyController extends Controller
 
     public function index()
     {
-        $companies = Company::all();
-
+        $companies = Company::paginate(20);
         return view('admin.company',compact('companies'));
     }
 
@@ -46,27 +46,27 @@ class CompanyController extends Controller
     {
 
         $data = $request->validate([
-            'company_name'=> 'required',
-            'email'=>'required|email'
+            'company_name'=> 'required|min:3|max:255',
+            'email'=>'required|email|unique:company_info,email|confirmed',
+            'email_confirmation'=>'required|email'
             ]);
+        $password = generateRandomString(40);
 
-
+        $data['password'] = Hash::make($password);
+        $data['company_logo'] = 'default/default.png';
+        $data['address'] = 'Enter your company address';
 
          $company =  Company::create($data);
 
-         // Mail::to($request->email)->send(new SendEmail($data));
+        Mail::send('layouts.admin.email',['company'=>$company], function($message) use ($company){
 
-        Mail::send('layouts.admin.email',['$company'=>'$company_name'], function($message){
+             $message->from('rednianred@gmail.com', 'This is your password');
 
-            // $m->from('rednianrsadsaded@gmail.com', 'Your Application');
-
-            $message->to('rednianred@gmail.com', '$user->name')->subject('Your Reminder!');
+            $message->to($company->email, ucwords($company->company_name))->subject('Your Account!');
 
         });
 
-        Session::flash('success', ucwords($request->company_name).' Company successfully created.');
-
-        return redirect()->back();  
+        return redirect()->back()->with('success', ucwords($request->company_name).' Company successfully created.');
     }
 
     /**
