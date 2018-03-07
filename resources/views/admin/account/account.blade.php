@@ -286,7 +286,7 @@
 
             $('input[name="status"]').change(function () {
 
-                var status = $(this).attr('data-status') == 1 ? 0 : 1;
+                var status = $(this).attr('data-status') === 1 ? 0 : 1;
                 var user_id = $(this).attr('data-user_id');
 
                 $.ajax({
