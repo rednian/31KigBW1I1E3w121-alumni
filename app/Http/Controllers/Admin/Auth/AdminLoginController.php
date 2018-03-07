@@ -22,7 +22,12 @@ class AdminLoginController extends Controller
 
   public function login(Request $request)
   {
-    if(Auth::guard('admin')->attempt(['username'=>$request->username,'password'=>$request->password])){
+    $credentials = $request->validate([
+      'username'=>'required',
+      'password'=>'required'
+    ]);
+
+    if(Auth::guard('admin')->attempt(['username'=>$request->username,'password'=>$request->password, 'status'=>1])){
 
       return redirect()->intended(route('account.index'));
 
@@ -33,9 +38,9 @@ class AdminLoginController extends Controller
 
   public function logout()
   {
-    Auth::guard('admin')->logout();
+      Auth::guard('admin')->logout();
 
-    return redirect()->route('admin.login');
+      return redirect()->route('admin.login');
   }
 
 }
