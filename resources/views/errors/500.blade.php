@@ -22,7 +22,7 @@
     <h3 class="font-bold">Internal Server Error</h3>
 
     <div class="error-desc">
-        The server encountered something unexpected that didn't allow it to complete the request. Please check your database credentials for this error.
+        The server encountered something unexpected that didn't allow it to complete the request. There's something wrong with your database connection. Please check the database credentials.
     </div>
 </div>
 

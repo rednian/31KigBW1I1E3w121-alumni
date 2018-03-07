@@ -2,6 +2,7 @@
 
 namespace Alumni\Model;
 
+use Alumni\Partners;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -21,9 +22,12 @@ class AdminModel extends Authenticatable
     'password'
   ];
 
-  protected $fillable = [
-    'fname','midname','lastname','position','department','username','password','image_path'
-  ];
+  protected $fillable = ['fname','midname','lastname','position','department','username','password','image_path'];
+
+  protected function partner()
+  {
+    return $this->hasMany(Partners::class);
+  }
 
   protected function partner()
   {
