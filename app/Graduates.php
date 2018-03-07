@@ -9,6 +9,7 @@ class Graduates extends Model
 {
     
 	protected $table = "stud_prog_taken";
+	protected $primaryKey = "spth_id";
 
 	public static function graduatesList(){
 
@@ -101,6 +102,15 @@ class Graduates extends Model
 							");
 
 		return $alumnus;
+	}
+
+	public static function grad_alumnus_info($ssi_id){
+
+		$info = Graduates::where('ssi_id', $ssi_id)
+  						   ->where('stat_id', 1)
+						   ->first();
+
+		return $info;
 
 	}
 

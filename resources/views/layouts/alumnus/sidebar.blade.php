@@ -21,11 +21,11 @@
 	<ul>
 		<li>
 			<i class="fa fa-fw fa-user f-20 c-lighter pull-left"></i>
-			<a href="profile.html">Profile</a>
+			<a href="{{route('profile')}}">Profile</a>
 		</li>
 		<li>
 			<i class="fa fa-fw fa-briefcase f-20 c-lighter pull-left"></i>
-			<a href="jobs.html">Jobs</a>
+			<a href="{{route('jobs')}}">Jobs</a>
 		</li>
 		<li>
 			<i class="fa fa-fw fa-envelope f-20 c-lighter pull-left"></i>

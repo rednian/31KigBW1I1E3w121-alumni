@@ -18,4 +18,9 @@ class Posts extends Model
 		return $this->hasMany('Alumni\Comments', 'post_id');
 	}
 
+	public function positions(){
+		return $this->belongsTo('Alumni\Positions', 'position_id');
+	}
+
+
 }

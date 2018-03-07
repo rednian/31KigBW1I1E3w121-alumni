@@ -7,7 +7,7 @@
 
 <header class="header" style="padding-top:10px;">
     <div class="container">
-        <a href="index.html" class="pull-left">
+        <a href="{{route('home')}}" class="pull-left">
             <img src="{{url('public/images/logo.png')}}" class="logo">
         </a>
         <div class="alumni-type pull-left">

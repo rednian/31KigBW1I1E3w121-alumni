@@ -3,12 +3,12 @@
 <div class="sub-nav mb-24">
     <div class="container">
         <ul class="pull-left">
-            <li><a href="alumnus.html">                 Profile         </a></li>
-            <li><a href="company_visitor.html">         Jobs            </a></li>
+            <li><a href="{{route('profile')}}">         Profile         </a></li>
+            <li><a href="{{route('jobs')}}">            Jobs            </a></li>
             <li><a href="advertising_register.html">    Inbox           </a></li>
             <li><a href="account_sysad.html">           Transcript of Records         </a></li>
-            <li><a href="reports_tesda.html">           Application     </a></li>
-            <li><a href="">                             My Account      </a></li>
+            <li><a href="">                             Application     </a></li>
+            <li><a href="{{route('account')}}">         My Account      </a></li>
             <li><a href="">                             Download        </a></li>
         </ul>    
         <div class="alumnus-search pull-right">
@@ -31,7 +31,7 @@
 </div>
 <div class="greetings-pane myriad" style="margin-top:-25px;">
     <h6>
-        <b>Greetings!! </b> <span>
+        <b>Greetings!! </b> <span>Mr./Ms. 
         
         
         @if(Auth::check() && $user)

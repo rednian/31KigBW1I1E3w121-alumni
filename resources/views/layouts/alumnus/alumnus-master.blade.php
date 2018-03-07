@@ -24,7 +24,29 @@
     <link href="{{ asset('public/css/tor.css') }}" rel="stylesheet">
     <link href="{{ asset('public/css/visit.css') }}" rel="stylesheet">
     <link href="{{ asset('public/css/custom.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('public/plugins/owl_carousel/dist/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/plugins/owl_carousel/dist/assets/owl.theme.default.css') }}" rel="stylesheet">
+
     @yield('links')
+
+    <style>
+        .pad-bot-5 {
+            padding-bottom: 5px;
+        }
+        .pad-bot-10 {
+            padding-bottom: 10px;
+        }
+        .pad-top-5 {
+            padding-top: 5px;
+        }
+        .pad-top-10 {
+            padding-top: 10px;
+        }
+        .box-shadow:hover {
+            box-shadow: 0px 0px 1px 1px #ccc;
+        }
+    </style>
 
 </head>
 <body>
@@ -114,13 +136,37 @@
         </div> -->
 
 
-
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3 s-pad">
+                    <a href="#"><span class="c-green">Virtual Information Tracer for Alumnus</span> <span class="c-dark">VITA&trade;</span></a>
+                    <p class="f-10 c-light" style="margin-top:2px;">Developed and Manufactured by Engtech Global Solutions Inc.</p>
+                </div>
+                <div class="col-xs-9 s-pad">
+                    <ul class="pull-left">
+                        <li><a href="#">User Agreement</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Copyright Policy</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Account</a></li>
+                    </ul>
+                    <div class="f-socials pull-right">
+                        <a href="#"><i class="fa fa-facebook-square"></i></a>
+                        <a href="#"><i class="fa fa-twitter-square"></i></a>
+                    </div>
+                    <br><p class="all-rights">All rights reserve 2017</p>
+                </div>
+            </div>
+        </div>
+    </footer>
     
         
 <script src="{{ asset('public/js/jquery.min.js') }}"></script>
 <script src="{{ asset('public/js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('public/js/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('public/plugins/owl_carousel/dist/owl.carousel.min.js') }}"></script>
 @yield('script')
 
 <script>
@@ -142,6 +188,128 @@
     });
 
 </script>
+
+<!-- hiding/minimizing long contents/texts -->
+<script>
+    (function(){
+        var measurer = $('<span>', {
+                                    style: "display:inline-block;word-break:break-word;visibility:hidden;white-space:pre-wrap;"})
+           .appendTo('body');
+        function initMeasurerFor(textarea){
+          if(!textarea[0].originalOverflowY){
+            textarea[0].originalOverflowY = textarea.css("overflow-y");    
+          }  
+          var maxWidth = textarea.css("max-width");
+          measurer.text(textarea.text())
+              .css("max-width", maxWidth == "none" ? textarea.width() + "px" : maxWidth)
+              .css('font',textarea.css('font'))
+              .css('overflow-y', textarea.css('overflow-y'))
+              .css("max-height", textarea.css("max-height"))
+              .css("min-height", textarea.css("min-height"))
+              .css("min-width", textarea.css("min-width"))
+              .css("padding", textarea.css("padding"))
+              .css("border", textarea.css("border"))
+              .css("box-sizing", textarea.css("box-sizing"))
+        }
+        function updateTextAreaSize(textarea){
+            textarea.height(measurer.height());
+          var w = measurer.width();
+          if(textarea[0].originalOverflowY == "auto"){
+                var mw = textarea.css("max-width");
+              if(mw != "none"){
+                    if(w == parseInt(mw)){
+                    textarea.css("overflow-y", "auto");
+                    } else {
+                    textarea.css("overflow-y", "hidden");
+                    }
+              }
+           }
+           textarea.width(w + 2);
+        }
+        $('textarea.autofit').on({
+            input: function(){      
+                var text = $(this).val();  
+                if($(this).attr("preventEnter") == undefined){
+                   text = text.replace(/[\n]/g, "<br>&#8203;");
+                }
+                measurer.html(text);                       
+                updateTextAreaSize($(this));       
+            },
+            focus: function(){
+             initMeasurerFor($(this));
+            },
+            keypress: function(e){
+                if(e.which == 13 && $(this).attr("preventEnter") != undefined){
+                e.preventDefault();
+              }
+            }
+        });
+    })();
+</script>
+
+<!-- carousel -->
+<script>
+
+    // CAROUSEL 
+    $(document).ready(function(){
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:-40,
+            // nav:true,  
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:3
+                },
+                1000:{
+                    items:5
+                }
+            }, 
+        })
+    });
+
+    $(".cnav-next").click(function(){
+        let nextbtn = document.getElementsByClassName('owl-next')[0];
+        nextbtn.click();
+    });
+
+    $(".cnav-prev").click(function(){
+        let prevbtn = document.getElementsByClassName('owl-prev')[0];
+        prevbtn.click();
+    });
+
+    // HIDE LONG TEXTS
+
+    jQuery(function(){
+
+        var minimized_elements = $('p.minimize');
+        
+        minimized_elements.each(function(){    
+            var t = $(this).text();        
+            if(t.length < 300) return;
+            
+            $(this).html(
+                t.slice(0,300)+'<span>... </span><a href="#" class="more c-green"><small>more</small></a>'+
+                '<span style="display:none;">'+ t.slice(300,t.length)+' <a href="#" class="less c-green"><small>less</small></a></span>'
+            );
+            
+        }); 
+        
+        $('a.more', minimized_elements).click(function(event){
+            event.preventDefault();
+            $(this).hide().prev().hide();
+            $(this).next().show();        
+        });
+        
+        $('a.less', minimized_elements).click(function(event){
+            event.preventDefault();
+            $(this).parent().hide().prev().show().prev().show();    
+        });
+    });
+</script>
+
 
 </body>
 </html>

@@ -2,8 +2,6 @@
 @extends('layouts/alumnus/alumnus-master')
 
 @section('links')
-    <link href="{{ asset('public/plugins/owl_carousel/dist/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/plugins/owl_carousel/dist/assets/owl.theme.default.css') }}" rel="stylesheet">
 	
 	<style>
 
@@ -25,8 +23,8 @@
 		.replies-section{
 			padding-left:30px;
 		}
-		textarea.reply {
-		    min-width:450px;
+		textarea.autofit {
+		    min-width:350px;
 		    min-height:34px;
 		    height:30px;
 		    resize:none;
@@ -36,12 +34,16 @@
 		    padding:5px 5px 5px 10px;    
 		}
 
+		textarea.autofit:focus{
+			
+		}
+
 	</style>
 
 @endsection
 
 @section('content')
-	
+
 	<div class="main-content">
 		
 		<div class="container">
@@ -116,10 +118,10 @@
 									</div>
 
 									<div class="single-post-body">
-										@if($value->position)
+										@if($value->positions)
 
-											<h5><span>Position: </span><a href="#" class="c-green post_position"> <?php echo $value->position ?> </a></h5><br>	
-											<p class="minimize"> <?php echo  $value->post_content ?> </p>
+											<h5><span>Position: </span><a href="#" class="c-green post_position"> {{ $value->positions->position_title }} </a></h5><br>	
+											<p class="minimize"> {{ $value->post_content }} </p>
 											<h5><span>Salary: </span><a href="#" class="c-green post_position"><?php echo ($value->salary) ?> </a></h5><br>	
 										@endif
 
@@ -138,153 +140,166 @@
 									<div class="single-post-footer">
 										@if(count($value['comments']) >=3 && count($value['comments']) <= 10)
 										<div>
-											<a class='comments-label more_comments' post-key='{{$post_key}}'> View {{ count($value['comments']) - 2 }} more comments</a>
+											<a class='comments-label more_comments' post-key='{{$value->post_id}}'> View {{ count($value['comments']) - 2 }} more comments</a>
 										</div>
 										@elseif(count($value['comments']) > 10)
 										<div>
-											<a class='comments-label more_comments' post-key='{{$post_key}}'>View previous comments</a>
+											<a class='comments-label more_comments' post-key='{{$value->post_id}}'>View previous comments</a>
 										</div>
 										@elseif(count($value['comments']) <= 2)
-										<div>
+										<div style="padding-bottom: 20px;">
 											<a class='comments-label'>Comments</a>
 										</div>
 										@endif
 
 										<!-- Comments -->
-										
-										@foreach($value['comments'] as $comment_key => $comment)
-											
-											@if($comment_key >=2)
-												<div class="comments-section hidden comment{{$post_key}}">
-											@else
-												<div class="comments-section">
-											@endif
+										<div class="comment-container" id="comment_container_{{$value->post_id}}">
+											@foreach($value['comments'] as $comment_key => $comment)
+												
+												@if($comment_key >=2)
+													<div class="comments-section hidden comment{{$value->post_id}}" style="padding-top:0px !important;">
+												@else
+													<div class="comments-section" style="padding-top:0px !important;">
+												@endif
 
-												<div class="comment-content">
-													
-														<div class="single-post-head">
-															@if($comment['company_info'])
-																<img src="{{url('public/storage/company_logos')}}/<?php echo $comment['company_info']->company_logo ?>" class="pull-left" style="width:35px;">
-															@else
-																<img src="{{url('public/storage/alumnus_images')}}/<?php echo $comment['alumnus_info']['student_per_info']['stud_image']->image_name.'.'.$comment['alumnus_info']['student_per_info']['stud_image']->type?>" class="pull-left img-circle">
-															@endif
-													
-															<div class="company-info pull-left">
-																<h6>
-																	@if($comment['company_info'])
-																		{{ strtoupper($comment['company_info']->company_name) }}
-																	@else
-																		{{  
-																			ucfirst($comment['alumnus_info']['student_per_info']->fname) . " " . 
-																			ucfirst($comment['alumnus_info']['student_per_info']->mname[0]) . ". " .
-																			ucfirst($comment['alumnus_info']['student_per_info']->lname)  
-																		}}
-																	@endif
-																</h6>
-																<span>
-																	@if($comment['company_info'])
-																		{{ ucfirst($comment['company_info']->address) }}
-																	@else
-																		{{ $comment['alumnus_info']['stud_program'][0]['program_list']->prog_name }}
-																	@endif
-																</span>
-																	
-															</div>
-															<span class="pull-right post-time">5 mins ago</span>
-														</div>
-
-														<div class="single-post-body no-margin no-padding no-border">
-															<div>
-																<p class="minimize f-12">
-																	{{ $comment->content }}
-																</p>
+														<div class="comment-content">
+														
+															<div class="single-post-head">
+																@if($comment['company_info'])
+																	<img src="{{url('public/storage/company_logos')}}/<?php echo $comment['company_info']->company_logo ?>" class="pull-left" style="width:35px;">
+																@else
+																	<img src="{{url('public/storage/alumnus_images')}}/<?php echo $comment['alumnus_info']['student_per_info']['stud_image']->image_name.'.'.$comment['alumnus_info']['student_per_info']['stud_image']->type?>" class="pull-left img-circle">
+																@endif
+														
+																<div class="company-info pull-left">
+																	<h6>
+																		@if($comment['company_info'])
+																			{{ strtoupper($comment['company_info']->company_name) }}
+																		@else
+																			{{  
+																				ucfirst($comment['alumnus_info']['student_per_info']->fname) . " " . 
+																				ucfirst($comment['alumnus_info']['student_per_info']->mname[0]) . ". " .
+																				ucfirst($comment['alumnus_info']['student_per_info']->lname)  
+																			}}
+																		@endif
+																	</h6>
+																	<span>
+																		@if($comment['company_info'])
+																			{{ ucfirst($comment['company_info']->address) }}
+																		@else
+																			{{ $comment['alumnus_info']['stud_program'][0]['program_list']->prog_name }}
+																		@endif
+																	</span>
+																		
+																</div>
+																<span class="pull-right post-time">5 mins ago</span>
 															</div>
 
-														</div>
+															<div class="single-post-body no-margin no-padding no-border">
+																<div>
+																	<p class="minimize f-12">
+																		{{ $comment->content }}
+																	</p>
+																</div>
+
+															</div>
 
 
-														<div class="single-post-footer">
-															
-																<div style="padding-bottom: 20px;padding-left: 0px;font-size: 10px; padding-left: 15px;">
+															<div class="single-post-footer">
+																
+																<div style="padding-bottom: 20px;padding-left: 0px;font-size: 10px; ">
 
-																	<a href="#" class="comments-label show_reply" comment-key="{{ $comment_key }}">
+																	<a href="#" class="comments-label show_reply" post-key="{{$value->post_id}}" comment-key="{{ $comment->comment_id }}">
 																		Reply
 																	</a>
 																	@if(count($comment['replies']))
 																		<span class="comments-label"> • </span>
 																		<small class='comments-label'>({{ count($comment['replies']) }})</small>
-																		<a href="#" class="comments-label view_replies" comment-key='{{ $comment_key }}'>View replies</a>	
+																		<a href="#" class="comments-label view_replies" comment-key='{{ $comment->comment_id }}' post-key="{{$value->post_id}}">View replies</a>	
 																	@endif
 																</div>
 
-															<div class="replies-section">
+																<!-- replies section -->
 
-																@foreach($comment['replies'] as $reply_key => $reply)
-																	
-																	<div class="single-post hidden comment_reply{{$comment_key}}" style="margin-bottom: 0px !important;">
-																		<!-- <pre>{{ $reply['alumnus_info'] }} -->
-																		<div class="single-post-head">
-																			@if($reply['alumnus_info'])
-																				<img src="{{url('public/storage/alumnus_images')}}/{{$reply['alumnus_info']['student_per_info']['stud_image']->image_name}}.{{$reply['alumnus_info']['student_per_info']['stud_image']->type}}" class="img-circle pull-left">
-																			@else
-																				<img src="{{url('public/storage/company_logos')}}/{{$reply['company_info']->company_logo}}" class="img-circle pull-left">
-																				
-																			@endif
+																<div class="replies-section">
 
-																			<div class="company-info pull-left">
+																	@foreach($comment['replies'] as $reply_key => $reply)
+																		
+																		<div class="single-post hidden comment_reply_{{$value->post_id}}_{{$comment->comment_id}}" style="margin-bottom: 0px !important;">
+																			<!-- <pre>{{ $reply['alumnus_info'] }} -->
+																			<div class="single-post-head">
 																				@if($reply['alumnus_info'])
-																					<h6>
-																						{{ $reply['alumnus_info']['student_per_info']->fname }}
-																						{{$reply['alumnus_info']['student_per_info']->mname[0]}}. 
-																						{{ $reply['alumnus_info']['student_per_info']->lname}}</h6>
-																					<span>{{ $reply['alumnus_info']['stud_program'][0]['program_list']->prog_name }}</span>
+																					<img src="{{url('public/storage/alumnus_images')}}/{{$reply['alumnus_info']['student_per_info']['stud_image']->image_name}}.{{$reply['alumnus_info']['student_per_info']['stud_image']->type}}" class="img-circle pull-left">
 																				@else
-																					<h6>{{ strtoupper($reply['company_info']->company_name) }}</h6>
-																					<span>{{ $reply['company_info']->address }}</span>
+																					<img src="{{url('public/storage/company_logos')}}/{{$reply['company_info']->company_logo}}" class="img-circle pull-left">
+																					
 																				@endif
+
+																				<div class="company-info pull-left">
+																					@if($reply['alumnus_info'])
+																						<h6>
+																							{{ $reply['alumnus_info']['student_per_info']->fname }}
+																							{{$reply['alumnus_info']['student_per_info']->mname[0]}}. 
+																							{{ $reply['alumnus_info']['student_per_info']->lname}}</h6>
+																						<span>{{ $reply['alumnus_info']['stud_program'][0]['program_list']->prog_name }}</span>
+																					@else
+																						<h6>{{ strtoupper($reply['company_info']->company_name) }}</h6>
+																						<span>{{ $reply['company_info']->address }}</span>
+																					@endif
+																				</div>
 																			</div>
-																		</div>
 
 
-																		<div class="single-post-body no-margin no-padding no-border">
-																			<div>
-																				<p class="minimize f-12">
-																					{{ $reply->content }}
-																				</p>
+																			<div class="single-post-body no-margin no-padding no-border">
+																				<div>
+																					<p class="minimize f-12">
+																						{{ $reply->content }}
+																					</p>
+																				</div>
 																			</div>
-																		</div>
 
-																	</div>
-																@endforeach
+																		</div>
+																	@endforeach
 
-															  	<div class="post-box post-box-reply{{$comment_key}} hidden comment_reply{{$comment_key}}" style="padding-bottom: 20px;">
-																	<div class="row">
-																		<div class="col-lg-1">
-																			<img class="auth_image img-circle" >
-																		</div>
-																		<div class="col-lg-11">
-																    		<textarea class="autofit form-control reply" placeholder="Write a reply..."></textarea>
-																		</div>
-																	</div>
-															    </div>
+																	<!-- REPLY FORM -->
+																    <form action="{{ route('post_reply') }}" method="POST" class="navbar-form reply_form post-box-reply_{{$value->post_id}}_{{$comment->comment_id}} hidden comment_reply_{{$value->post_id}}_{{$comment->comment_id}}" style="padding-bottom: 20px;" role="search" >
+																		{{ csrf_field() }}
+																		<img class="pull-left auth_image img-responsive img-circle" style="width:35px;">
+																	    <div class="input-group add-on" style="padding-left:10px;">
+																		    <textarea type="text" name="reply_content" class="autofit reply form-control" placeholder="Write a reply..." style="width:250px !important;" required></textarea>
+																	    	<div class="input-group-btn">
+																		    	<button class="btn btn-default submit_comment" type="submit"><i class="fa fa-reply"></i></button>
+																	    	</div>
+																	    </div>
+																	    	<input type="text" name="comment_id" class="hidden" value="{{$comment->comment_id}}">
+																	</form>
+
+																    
+																</div>
+
 
 															</div>
 
-
-														</div>
-
+															
 														
-													
-												</div>
+													</div>
 
-											</div>
-										@endforeach
-									
-										<div class="post-box" style="margin-top: 20px;padding-left: 20px;">
-											<img class="pull-left auth_image img-responsive img-circle">
-											<!-- <input type="text" class="pull-left" placeholder="Write a comment"> -->
-											<textarea class="autofit form-control reply pull-left" placeholder="Post a comment..." style="width:450px !important;margin-left:5px;"></textarea>
+												</div>
+											@endforeach
 										</div>
+										
+										<!-- COMMENT FORM -->
+										<form action="{{ route('post_comment') }}" method="POST" class="navbar-form comment_form" role="search">
+											{{ csrf_field() }}
+											<img class="pull-left auth_image img-responsive img-circle" style="width:35px;">
+										    <div class="input-group add-on" style="padding-left:10px;">
+											    <textarea type="text" name="comment_content" class="autofit reply form-control" placeholder="Post a comment..." required></textarea>
+										    	<div class="input-group-btn">
+											    	<button class="btn btn-default submit_comment" type="submit"><i class="fa fa-reply"></i></button>
+										    	</div>
+										    </div>
+										    	<input type="text" name="post_id" class="hidden" value="{{$value->post_id}}">
+										</form>
 
 									</div>
 								</div>
@@ -296,27 +311,7 @@
 					</div>
 				</div>
 				<div class="col-lg-3 s-pad bg-white">
-					<div class="right-pane">
-						<div class="recent-graduates">
-							<h5><span class="c-green">ACLC</span> RECENT GRADUATES</h5>
-							<div class="grad-carousel">
-								<span class="fa fa-chevron-left cnav-prev"></span>								
-								<div class="owl-carousel">
-								  <div class="owl-content"> <img src="{{url('public/images/don.jpg')}}"> </div>
-								  <div class="owl-content"> <img src="{{url('public/images/don.jpg')}}"> </div>
-								  <div class="owl-content"> <img src="{{url('public/images/don.jpg')}}"> </div>
-								  <div class="owl-content"> <img src="{{url('public/images/don.jpg')}}"> </div>
-								  <div class="owl-content"> <img src="{{url('public/images/don.jpg')}}"> </div>
-								  <div class="owl-content"> <img src="{{url('public/images/don.jpg')}}"> </div>
-								</div>
-								<div class="grad-info">
-									<h5>Don J. Del Rosario</h5>
-									<h6><span class="c-green">Graduate: </span>Bachelor of Science in Information...</h6>
-								</div>
-								<span class="fa fa-chevron-right cnav-next"></span>
-							</div>
-						</div>
-					</div>
+					@include('layouts/alumnus/sidebar_right')
 				</div>
 
 			</div>
@@ -330,71 +325,10 @@
 
 @section('script')
 	
-	<script type="text/javascript" src="{{ asset('public/plugins/owl_carousel/dist/owl.carousel.min.js') }}"></script>
 	
-	<script>
-
-		// CAROUSEL 
-		$(document).ready(function(){
-		  	$('.owl-carousel').owlCarousel({
-			    loop:true,
-			    margin:-40,
-			    // nav:true,  
-			    responsive:{
-			        0:{
-			            items:1
-			        },
-			        600:{
-			            items:3
-			        },
-			        1000:{
-			            items:5
-			        }
-			    }, 
-			})
-		});
-
-		$(".cnav-next").click(function(){
-			let nextbtn = document.getElementsByClassName('owl-next')[0];
-			nextbtn.click();
-		});
-
-		$(".cnav-prev").click(function(){
-			let prevbtn = document.getElementsByClassName('owl-prev')[0];
-			prevbtn.click();
-		});
-
-		// HIDE LONG TEXTS
-
-		jQuery(function(){
-
-		    var minimized_elements = $('p.minimize');
-		    
-		    minimized_elements.each(function(){    
-		        var t = $(this).text();        
-		        if(t.length < 300) return;
-		        
-		        $(this).html(
-		            t.slice(0,300)+'<span>... </span><a href="#" class="more"><small>more</small></a>'+
-		            '<span style="display:none;">'+ t.slice(300,t.length)+' <a href="#" class="less"><small>less</small></a></span>'
-		        );
-		        
-		    }); 
-		    
-		    $('a.more', minimized_elements).click(function(event){
-		        event.preventDefault();
-		        $(this).hide().prev().hide();
-		        $(this).next().show();        
-		    });
-		    
-		    $('a.less', minimized_elements).click(function(event){
-		        event.preventDefault();
-		        $(this).parent().hide().prev().show().prev().show();    
-		    });
-
-		});
-	</script>
-
+	
+	
+	<!-- hiding long comments or replies -->
 	<script>
 		
 		$(document).on('click', '.more_comments', function(event) {
@@ -411,83 +345,109 @@
 		$(document).on('click', '.view_replies', function(event) {
 			event.preventDefault();
 			var comment_key = $(this).attr('comment-key');
+			var post_key	= $(this).attr('post-key');
 
-
-			if( $('.comment_reply'+comment_key).hasClass('hidden') === true){
-				$('.comment_reply'+comment_key).removeClass('hidden');
+			if( $('.comment_reply_'+post_key+"_"+comment_key).hasClass('hidden') === true){
+				$('.comment_reply_'+post_key+"_"+comment_key).removeClass('hidden');
 				$(this).html('Hide replies');
 			}
 			else{
-				$('.comment_reply'+comment_key).addClass('hidden');
+				$('.comment_reply_'+post_key+"_"+comment_key).addClass('hidden');
 				$(this).html('View replies');
-
 			}
 
 		});
 
 		$(document).on('click', '.show_reply', function(event) {
 			event.preventDefault();
+			var post_key	= $(this).attr('post-key');
 			var comment_key = $(this).attr('comment-key');
-			log(comment_key)
+			
+			$('.post-box-reply_'+post_key+'_'+comment_key).removeClass('hidden');
+
+		});
+	</script>
+
+	
+	<!-- AJAX Comment -->
+	<script>
+		
+		$(document).on('submit', '.comment_form', function(event) {
+			event.preventDefault();
+
+			$.ajax({
+				url: '{{ route("post_comment") }}',
+				type: 'POST',
+				data: {
+						'_token': '{{ csrf_token() }}',
+						'data'  : $(this).serializeArray().reduce(function(a, x) { a[x.name] = x.value; return a; }, {})
+					  },
+			})
+			.done(function(data) {
+
+				var comment_id  = data.comment_id;
+				var post_id 	= data.post_id;
+				var content 	= data.content;
+				var date 		= data.date;
+
+				if(data.company_id){
+					var company_id = data.company_id;
+				}
+				else{
+					var ssi_id 	   = data.ssi_id;
+				}
+				log(data)																	
+				var img_name = "{{url('public/storage/alumnus_images')}}/{{$user['alumnus_info']['student_per_info']['stud_image']->image_name}}.{{$user['alumnus_info']['student_per_info']['stud_image']->type}}";
+
+				var new_comment 	= ' <div class="comments-section" style="padding-top:0px !important;">';
+					new_comment	   +=		'<div class="comment-content">';
+					new_comment	   +=			'<div class="single-post-head">';
+					new_comment	   +=				'<img src="'+img_name+'" class="pull-left img-circle" style="width:35px;">';
+					new_comment	   +=				'<div class="company-info pull-left">'
+					new_comment	   +=					'<h6> {{ $user->alumnus_info->student_per_info->fname }} {{ $user->alumnus_info->student_per_info->mname[0] }}. {{ $user->alumnus_info->student_per_info->lname }} </h6>'
+					new_comment	   +=					'<span>{{ $user->alumnus_info->stud_program[0]->program_list->prog_name }}</span>'
+					new_comment	   +=				'</div>'
+					new_comment	   +=				'<span class="pull-right post-time">5 mins ago</span>'
+					new_comment	   +=			'</div>'
+					new_comment	   +=		'</div>'
+					new_comment	   +=		'<div class="single-post-body no-margin no-padding no-border">'
+					new_comment	   +=			'<div>'
+					new_comment	   +=				'<p class="minimize f-12">'
+					new_comment	   +=			 		content
+					new_comment	   +=				'</p>'
+					new_comment	   +=			'</div>'
+					new_comment	   +=		'</div>'
+					new_comment	   +=		'<div class="single-post-footer">'
+					new_comment	   +=			'<div style="padding-bottom: 20px;padding-left: 0px;font-size: 10px; ">'
+					new_comment	   +=				'<a href="#" class="comments-label show_reply" post-key="'+post_id+'" comment-key="'+comment_id+'">'
+					new_comment	   +=					'Reply'
+					new_comment	   +=				'</a>'
+					new_comment	   +=			'</div>'
+					new_comment	   +=		'</div>'
+					new_comment	   += ' </div>';
+					new_comment    += '	<div class="post-box post-box-reply_'+post_id+'_'+comment_id+' hidden comment_reply_'+post_id+'_'+comment_id+'" style="padding-bottom: 20px;">'
+					new_comment    +=		'<div class="row">'
+					new_comment    +=			'<div class="col-lg-1">'
+					new_comment    +=				'<img class="auth_image img-circle" >'
+					new_comment    +=			'</div>'
+					new_comment    +=			'<div class="col-lg-11">'
+					new_comment    +=				'<textarea class="autofit form-control reply" placeholder="Write a reply..."></textarea>'
+					new_comment    +=			'</div>'
+					new_comment    +=		'</div>'
+					new_comment    +=	'</div>';
+
+				$("#comment_container_"+post_id).append(new_comment);
+
+			})
+			.fail(function(jqXHR, exception) {
+				console.log(jqXHR);
+				console.log(exception);
+			})
+			
+
 		});
 
 	</script>
 
-	<script>
-		(function(){
-			var measurer = $('<span>', {
-			   							style: "display:inline-block;word-break:break-word;visibility:hidden;white-space:pre-wrap;"})
-			   .appendTo('body');
-			function initMeasurerFor(textarea){
-			  if(!textarea[0].originalOverflowY){
-			  	textarea[0].originalOverflowY = textarea.css("overflow-y");    
-			  }  
-			  var maxWidth = textarea.css("max-width");
-			  measurer.text(textarea.text())
-			      .css("max-width", maxWidth == "none" ? textarea.width() + "px" : maxWidth)
-			      .css('font',textarea.css('font'))
-			      .css('overflow-y', textarea.css('overflow-y'))
-			      .css("max-height", textarea.css("max-height"))
-			      .css("min-height", textarea.css("min-height"))
-			      .css("min-width", textarea.css("min-width"))
-			      .css("padding", textarea.css("padding"))
-			      .css("border", textarea.css("border"))
-			      .css("box-sizing", textarea.css("box-sizing"))
-			}
-			function updateTextAreaSize(textarea){
-				textarea.height(measurer.height());
-			  var w = measurer.width();
-			  if(textarea[0].originalOverflowY == "auto"){
-			     	var mw = textarea.css("max-width");
-			      if(mw != "none"){
-			     		if(w == parseInt(mw)){
-			      		textarea.css("overflow-y", "auto");
-			     		} else {
-			         	textarea.css("overflow-y", "hidden");
-			     		}
-			      }
-			   }
-			   textarea.width(w + 2);
-			}
-			$('textarea.autofit').on({
-			    input: function(){      
-			      	var text = $(this).val();  
-			        if($(this).attr("preventEnter") == undefined){
-			      	   text = text.replace(/[\n]/g, "<br>&#8203;");
-			        }
-			      	measurer.html(text);                       
-			        updateTextAreaSize($(this));       
-			    },
-			    focus: function(){
-			     initMeasurerFor($(this));
-			    },
-			    keypress: function(e){
-			    	if(e.which == 13 && $(this).attr("preventEnter") != undefined){
-			      	e.preventDefault();
-			      }
-			    }
-			});
-		})();
-	</script>
-
 @endsection
+

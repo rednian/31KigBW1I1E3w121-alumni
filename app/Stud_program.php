@@ -11,7 +11,7 @@ class Stud_program extends Model
 
     
     public function program_list(){
-    	return $this->belongsTO("Alumni\Program_list", "pl_id");
+    	return $this->belongsTo("Alumni\Program_list", "pl_id");
     }
     
 }
