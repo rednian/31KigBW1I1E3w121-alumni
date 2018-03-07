@@ -10,6 +10,7 @@ use Alumni\Http\Requests\Account;
 use Alumni\Http\Controllers\Controller;
 use Alumni\Model\AdminModel;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Session;
 
 
@@ -28,11 +29,10 @@ class AccountController extends Controller
      */
     public function index()
     {
-         $users = AdminModel::paginate(6);
+        $users = AdminModel::paginate(6);
 
         return view('admin.account.account',compact('users'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -79,7 +79,7 @@ class AccountController extends Controller
 
         Session::flash('success','Account successfully created.');
         return back();
-    }
+    }   
 
     /**
      * Display the specified resource.
@@ -112,7 +112,7 @@ class AccountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -123,7 +123,9 @@ class AccountController extends Controller
      */
     public function destroy($id)
     {
-       $user =  AdminModel::find($id);
+//       $user =  AdminModel::find($id);
+//       $user->status = $request->status;
+//       $user->save();
 
 
 //        return $user->delete() ? true: false;
@@ -131,14 +133,14 @@ class AccountController extends Controller
     }
 
 
-    public function get_status(Request $request){
+    public function get_status(Request $request)
+    {
+        
+        $admin = AdminModel::find($request->user_id);
+        $admin->status = $request->status;
+        $admin->save();
 
-
-//        return ($request->input('status'));
-
-//        return response()->json([
-//          'name' => 'Abigail',
-//          'state' => 'CA'
-//        ]);
+       return response()->json($admin->only(['fname','lastname']));
+       // return redirect()->back()->with('success','dfsdsfsd');
     }
 }

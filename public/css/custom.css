@@ -1316,3 +1316,17 @@ footer ul li a {
 .fast .toggle-group { transition: left 0.1s; -webkit-transition: left 0.1s; }
 .quick .toggle-group { transition: none; -webkit-transition: none; }
 
+.form-control{
+	border-radius: 0;
+}
+
+.panel-success{
+	/*background-color: #3BA4A4;*/
+	border-color: #ddd;
+}
+
+.panel-success > .panel-heading {
+    color: #fff;
+    background-color: #3BA4A4;
+    /*border-color: #3BA4A4;*/
+}

@@ -12,9 +12,17 @@ class Accounts extends Model
 {
 
 	protected $table = "accounts";
-    protected $primaryKey = 'account_id';
+  protected $primaryKey = 'account_id';
+  protected $fillable = ['account_type','username','password','ss_id','company_id'];
+
 
 	public $remember_token=false;
+
+	protected function company()
+	{
+		return $this->belongsTo(Company::class,'account_id','company_id');
+	}
+
     
 	public static function isRegistered(){
 		return false;

@@ -2,6 +2,11 @@
 
 namespace Alumni\Http\Controllers\Admin;
 
+use Mail;
+use Session;
+use Alumni\Company;
+use Alumni\Accounts;
+use Alumni\Mail\SendEmail;
 use Illuminate\Http\Request;
 use Alumni\Http\Controllers\Controller;
 
@@ -11,7 +16,9 @@ class CompanyController extends Controller
 
     public function index()
     {
-        return view('admin.company');
+        $companies = Company::all();
+
+        return view('admin.company',compact('companies'));
     }
 
     public function visitor()
@@ -26,7 +33,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -37,7 +44,29 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->validate([
+            'company_name'=> 'required',
+            'email'=>'required|email'
+            ]);
+
+
+
+         $company =  Company::create($data);
+
+         // Mail::to($request->email)->send(new SendEmail($data));
+
+        Mail::send('layouts.admin.email',['$company'=>'$company_name'], function($message){
+
+            // $m->from('rednianrsadsaded@gmail.com', 'Your Application');
+
+            $message->to('rednianred@gmail.com', '$user->name')->subject('Your Reminder!');
+
+        });
+
+        Session::flash('success', ucwords($request->company_name).' Company successfully created.');
+
+        return redirect()->back();  
     }
 
     /**
