@@ -17,6 +17,7 @@ class CompanyController extends Controller
 
     public function index()
     {
+
         $companies = Company::paginate(20);
         return view('admin.company',compact('companies'));
     }
@@ -46,6 +47,7 @@ class CompanyController extends Controller
     {
 
         $data = $request->validate([
+
             'company_name'=> 'required|min:3|max:255',
             'email'=>'required|email|unique:company_info,email|confirmed',
             'email_confirmation'=>'required|email'

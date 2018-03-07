@@ -29,4 +29,9 @@ class AdminModel extends Authenticatable
     return $this->hasMany(Partners::class);
   }
 
+  protected function partner()
+  {
+    return $this->hasMany('Alumni\Partners');
+  }
+
 }

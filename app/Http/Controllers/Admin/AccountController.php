@@ -137,6 +137,7 @@ class AccountController extends Controller {
   }
 
 
+
   public function get_status(Request $request) {
 
     $admin = AdminModel::find($request->user_id);

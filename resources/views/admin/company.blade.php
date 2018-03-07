@@ -8,6 +8,7 @@
                 <div class="col-xs-10 s-pad">
                     <div class="admin-content bg-white">
                         <div class="head oh border-bot mb-10">
+
                             @include('include.message')
                             <h4 class="pull-left c-bright-green normal">Company</h4>
                         </div>
@@ -114,4 +115,5 @@
             @endif
         });
     </script>
+
 @endsection

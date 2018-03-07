@@ -6,4 +6,3 @@
                 <strong>Success! </strong> {!!session()->get('success'); !!}.
             </div>
         @endif
-

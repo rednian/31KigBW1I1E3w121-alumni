@@ -22,6 +22,7 @@
                             <div class="col-md-12">
                                 @include('include.message')
                             </div>
+
                         </section>
 
                         <section class="row">
@@ -238,7 +239,6 @@
                             </div>
                         </section>
 
-
                     </div>
                 </div>
             </div>
@@ -283,6 +283,7 @@
         });
 
         function get_status() {
+
 
             $('input[name="status"]').change(function () {
 

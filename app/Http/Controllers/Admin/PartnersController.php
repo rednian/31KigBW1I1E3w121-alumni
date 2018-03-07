@@ -16,6 +16,7 @@ class PartnersController extends Controller
      */
     public function index()
     {
+
         $partners = Partners::paginate(10);
 
         return view('admin.account.partner',compact('partners'));
@@ -74,6 +75,7 @@ class PartnersController extends Controller
         $partners  = Partners::find($id);
 
         return view('partners.show', compact('partners'));
+
     }
 
     /**
