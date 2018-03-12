@@ -6,8 +6,8 @@ use Mail;
 use Session;
 use Alumni\Company;
 use Alumni\Accounts;
-use Alumni\Mail\SendEmail;
 use Illuminate\Http\Request;
+use Alumni\Mail\CompanyPassword;
 use Illuminate\Support\Facades\Hash;
 use Alumni\Http\Controllers\Controller;
 
@@ -45,28 +45,26 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $request->validate([
-
             'company_name'=> 'required|min:3|max:255',
             'email'=>'required|email|unique:company_info,email|confirmed',
             'email_confirmation'=>'required|email'
             ]);
+
         $password = generateRandomString(40);
 
         $data['password'] = Hash::make($password);
         $data['company_logo'] = 'default/default.png';
         $data['address'] = 'Enter your company address';
-
          $company =  Company::create($data);
 
-        Mail::send('layouts.admin.email',['company'=>$company], function($message) use ($company){
+         $account = New Accounts();
+         $account->email_address = $data['email'];
+         $account->company_id = $company->company_id;
+         $account->password = $data['password'];
+         $account->save();
 
-             $message->from('rednianred@gmail.com', 'This is your password');
-
-            $message->to($company->email, ucwords($company->company_name))->subject('Your Account!');
-
-        });
+         Mail::to($company->email)->send(new CompanyPassword($company, $password));
 
         return redirect()->back()->with('success', ucwords($request->company_name).' Company successfully created.');
     }

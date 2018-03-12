@@ -82,6 +82,13 @@
 <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('public/js/moment.js') }}"></script>
 <script src="{{ asset('public/js/custom.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('div.alert').fadeOut();
+                }, 5000);
+        });
+    </script>
 @yield('script')
 
 </body>

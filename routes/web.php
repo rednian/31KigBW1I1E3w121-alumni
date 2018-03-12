@@ -22,7 +22,6 @@
 Route::group(['prefix' => 'admin','middleware' => 'guest:admin'], function () {
   Route::get('/login', 'Admin\Auth\AdminLoginController@show_form')->name('admin.login');
   Route::post('/login', 'Admin\Auth\AdminLoginController@login')->name('admin.login.submit');
-
 });
 
 //authorized user access after login
