@@ -14,7 +14,8 @@ class SchoolList extends Model
 {
 	protected $table = "school_lists";
     protected $primaryKey = "sl_id";
-    protected $fillable = ['school_name', 'category'];
+    protected $guarded = [];
+//    protected $fillable = ['school_name', 'category'];
 
     public function setSchoolNameAttribute($school_name)
     {

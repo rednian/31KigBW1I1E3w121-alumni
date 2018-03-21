@@ -4,9 +4,9 @@ namespace Alumni;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Awards extends Model
+class Year extends Model
 {
-    protected $table = "awards";
-    protected $primaryKey = "award_id";
+    protected $table = 'year';
+    protected $primaryKey = 'y_id';
     protected $guarded = [];
 }

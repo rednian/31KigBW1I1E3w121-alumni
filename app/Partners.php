@@ -22,6 +22,5 @@ class Partners extends Model
     protected function admin()
     {
       return $this->belongsTo(AdminModel::class);
-
     }
 }

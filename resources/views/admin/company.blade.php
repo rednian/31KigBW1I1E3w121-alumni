@@ -75,7 +75,7 @@
                             </div>
                         </div>
 
-                        <section class="row">
+                        <section class="row" style="margin-top: 1%">
 
                             <div class="col-md-12">
 
@@ -83,7 +83,7 @@
 
                                     @foreach($companies as $company)
                                         <li class="oh mb-24 mr-15" style="max-width:300px;">
-                                            <img src="{{asset('public/storage/'.$company->company_logo)}}" alt="" class="pull-left mr-15" style="max-width:90px;">
+                                            <img src="{{asset('public/storage/'.$company->company_logo)}}" alt="" class="pull-left img-thumbnail mr-15" style="max-width:90px;">
                                             <div style="padding-top:0px;" class="mb-15 oh">
                                                 <h4>{{ucwords($company->name)}}</h4>
                                                 <h6 class="mt-3 c-sdark mb-5">{{ucwords($company->address)}}</h6>

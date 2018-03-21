@@ -34,7 +34,7 @@ class CompanyPassword extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->from('rednianred@gmail.com')
-            ->subject('Vita Password')
-            ->view('layouts.admin.email');
+                    ->subject('Vita Password')
+                    ->view('layouts.admin.email');
     }
 }

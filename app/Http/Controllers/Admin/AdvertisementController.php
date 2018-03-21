@@ -14,7 +14,7 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        return view('admin.advertisement');
+        return view('admin.advertising.register');
     }
 
     /**
