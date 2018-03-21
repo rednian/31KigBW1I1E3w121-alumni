@@ -8,8 +8,9 @@ class Stud_per_info extends Model
 {
     protected $table 		= "stud_per_info";
     protected $primaryKey 	= "spi_id";
+    protected $guarded = [];
 
-    protected $fillable = ["cit_id", "fname", "mname", "lname", "suffix", "birthdate", "birthplace", "gender", "civ_status", "weight", "height", "blood_type", "religion"];
+//    protected $fillable = ["cit_id", "fname", "mname", "lname", "suffix", "birthdate", "birthplace", "gender", "civ_status", "weight", "height", "blood_type", "religion"];
 
     public function stud_image(){
     	return $this->hasOne('Alumni\Stud_image', 'spi_id');

@@ -211,7 +211,7 @@
                                                                     title="{{$user['created_at']->format('F d, Y h:i:s a')}}"
                                                                     class="f-10 c-bright-green pull-left">
                                                                 Registered Date: <span
-                                                                        class="c-sdark">{{$user['created_at']->format('F d, Y')}}</span>
+                                                                        class="c-sdark">{{$user['created_at']->diffForHumans()}}</span>
                                                             </strong>
 
                                                         </div>
@@ -314,13 +314,9 @@
 
                 reader.onload = function (e) {
 
-
                     $('#blah').attr('src', e.target.result);
-
                 }
-
                 reader.readAsDataURL(input.files[0]);
-
             }
         }
 

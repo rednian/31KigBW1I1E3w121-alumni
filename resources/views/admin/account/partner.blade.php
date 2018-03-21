@@ -20,32 +20,34 @@
                             </div>
                         </section>
 
-                        <div>
-                            <ul class="inline-block">
-                                @foreach($partners as $partner)
-                                <li class="oh mb-24 mr-15 partner" style="max-width:300px;">
+                        <div class="row" style="margin-top: 1%;">
+                            <div class="col-md-12">
+                                <ul class="inline-block">
+                                    @foreach($partners as $partner)
+                                        <li class="oh mb-24 mr-15 partner" style="max-width:300px;">
 
-                                    <section class="pull-right clearfix" id="btn-group">
-                                        <a id="btn-edit" href="{{route('partner.edit',$partner)}}" class="btn btn-default btn-xs hide"><span class="fa fa-pencil"></span></a>
-                                            <a id="btn-delete" href="{{route('partner.destroy', $partner)}}" class="btn btn-default btn-xs hide"><span class="fa fa-trash-o"></span></a>
-                                    </section>
+                                            <section class="pull-right clearfix" id="btn-group">
+                                                <a id="btn-edit" href="{{route('partner.edit',$partner)}}" class="btn btn-default btn-xs hide"><span class="fa fa-pencil"></span></a>
+                                                <a id="btn-delete" href="{{route('partner.destroy', $partner)}}" class="btn btn-default btn-xs hide"><span class="fa fa-trash-o"></span></a>
+                                            </section>
 
-                                    <img src="{{asset('public/storage/'.$partner->logo)}}" alt="" class="pull-left mr-15" style="max-width:90px;">
+                                            <img src="{{asset('public/storage/'.$partner->logo)}}" alt="" class="pull-left mr-15 img-thumbnail" style="max-width:90px;">
 
-                                    <div style="padding-top:0px;" class="mb-15 oh">
-                                        <h4>{{ucwords($partner->name)}}</h4>
-                                        <h6 class="mt-3 c-sdark mb-5">{{ucwords($partner->address)}}</h6>
-                                        <h5 class="mt-3 c-bright-green">Contact Information</h5>
-                                        <h6 class="mt-3 c-sdark">{{$telephone_number = empty($partner->telephone_number) ? '' : 'Tell#: '. $partner->telephone_number}}</h6>
-                                        <h6 class="mt-3 c-sdark">{{$mobile_number = empty($partner->mobile_number) ? '' : 'Cell#: '. $partner->mobile_number}}</h6>
-                                        <h6 class="mt-3 c-sdark">{{$email = empty($partner->email) ? '' : 'Email: '. $partner->email}}</h6>
-                                    </div>
-                                </li>
-                                @endforeach
-                            </ul>
+                                            <div style="padding-top:0px;" class="mb-15 oh">
+                                                <h4>{{ucwords($partner->name)}}</h4>
+                                                <h6 class="mt-3 c-sdark mb-5">{{ucwords($partner->address)}}</h6>
+                                                <h5 class="mt-3 c-bright-green">Contact Information</h5>
+                                                <h6 class="mt-3 c-sdark">{{$telephone_number = empty($partner->telephone_number) ? '' : 'Tell#: '. $partner->telephone_number}}</h6>
+                                                <h6 class="mt-3 c-sdark">{{$mobile_number = empty($partner->mobile_number) ? '' : 'Cell#: '. $partner->mobile_number}}</h6>
+                                                <h6 class="mt-3 c-sdark">{{$email = empty($partner->email) ? '' : 'Email: '. $partner->email}}</h6>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
 
-                            <div class="text-center">
-                                {!! $partners->render() !!}
+                                <div class="text-center">
+                                    {!! $partners->render() !!}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -82,7 +84,7 @@
                             <label for="title" class="control-label col-sm-3">Logo <code>*</code></label>
 
                             <div class="col-sm-9">
-                                <input type="file" name="logo"  id="" class="form-control input-s-sm"/>
+                                <input type="file" name="logo" id="" class="form-control input-s-sm"/>
                                 @if ($errors->has('logo'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('logo') }}</strong>
@@ -134,7 +136,7 @@
                             <label for="title" class="control-label col-sm-3">Address <code>*</code></label>
 
                             <div class="col-sm-9">
-                                <textarea name="address"  value="{{old('address')}}" id="" class="form-control" cols="30" rows="5">{{old('address')}}</textarea>
+                                <textarea name="address" value="{{old('address')}}" id="" class="form-control" cols="30" rows="5">{{old('address')}}</textarea>
                                 @if ($errors->has('address'))
                                     <span class="help-block"><strong>{{ $errors->first('address') }}</strong></span>
                                 @endif
@@ -160,25 +162,21 @@
 @section('script')
     <script src="{{asset('public/plugins/bootstrap-toggle/toggle-button.min.js')}}"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
 
             @if($errors->any())
-                $('div#partner-modal').modal('show');
+            $('div#partner-modal').modal('show');
             @endif
 
             $('li.partner').hover(
-                    function () {
-
-                        var el = $(this).addClass("bg-gray").find('a');
-
-                        el.removeClass('hide');
-                    },
-                    function () {
-
-                        var el = $(this).removeClass("bg-gray").find('a');
-
-                        el.addClass('hide');
-                    }
+                function () {
+                    var el = $(this).addClass("bg-gray").find('a');
+                    el.removeClass('hide');
+                },
+                function () {
+                    var el = $(this).removeClass("bg-gray").find('a');
+                    el.addClass('hide');
+                }
             );
 
         });

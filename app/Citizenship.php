@@ -8,6 +8,7 @@ class Citizenship extends Model
 {
     protected $table = "citizenship";
     protected $primaryKey = "cit_id";
+    protected $guarded =[];
 
     
 }

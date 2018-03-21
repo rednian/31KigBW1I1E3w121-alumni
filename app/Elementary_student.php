@@ -8,6 +8,7 @@ class Elementary_student extends Model
 {
     protected $table = "elementary_student";
     protected $primaryKey = "elementary_id";
+    protected $guarded = [];
 
     public function elementary_address(){
     	return $this->hasOne("Alumni\Elementary_address", "elementary_id");

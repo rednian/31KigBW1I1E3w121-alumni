@@ -23,8 +23,7 @@
             width: device-width;
         }
 
-        @viewport
-        {
+        @viewport {
             width: device-width
         ;
         }
@@ -137,7 +136,7 @@
                         <div class="form-group {{ $errors->has('username') ? ' has-error' : '' }}">
                             {{csrf_field()}}
                             <label for="inputEmail" class="sr-only">Username</label>
-                            <input value="{{old('username')}}" type="text" name="username" id="inputEmail" autocomplete="off" class="form-control" placeholder="Username"  autofocus>
+                            <input value="{{old('username')}}" type="text" name="username" id="inputEmail" autocomplete="off" class="form-control" placeholder="Username" autofocus>
                             @if ($errors->has('username'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
@@ -146,14 +145,13 @@
                         </div>
                         <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="inputPassword" class="sr-only">Password</label>
-                            <input type="password" value="{{old('password')}}" name="password" id="inputPassword" class="form-control" placeholder="Password" >
+                            <input type="password" value="{{old('password')}}" name="password" id="inputPassword" class="form-control" placeholder="Password">
                             @if ($errors->has('password'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                             @endif
                         </div>
-
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" value="remember-me"> Remember me
@@ -166,7 +164,6 @@
 
         </div>
     </section>
-
 
 
 </div>

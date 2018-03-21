@@ -9,6 +9,7 @@ class Stud_sch_info extends Model
 {
     protected $table = "stud_sch_info";
     protected $primaryKey = 'ssi_id';
+    protected $guarded = [];
 
 
     public function student_per_info(){
