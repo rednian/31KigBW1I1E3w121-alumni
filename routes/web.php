@@ -39,6 +39,13 @@ Route::group(['prefix' =>'admin', 'middleware' => 'auth:admin'], function () {
 
   //company
   Route::get('company/visitor', 'Admin\CompanyController@visitor')->name('company.visitor');
+  Route::get('company/all', 'Admin\CompanyController@all')->name('company.all');
+  Route::get('company/monitor', 'Admin\CompanyController@companyUpdateMonitor')->name('company.monitor');
+
+  //report
+    Route::get('report/tesda','Admin\ReportController@tesda')->name('report.tesda');
+    Route::get('report/alumni','Admin\ReportController@alumni')->name('report.alumni');
+
 
   //resources
   Route::resource('advertisement', 'Admin\AdvertisementController');

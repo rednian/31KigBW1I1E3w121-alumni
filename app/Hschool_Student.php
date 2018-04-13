@@ -8,7 +8,8 @@ class Hschool_Student extends Model
 {
     protected $table = "hschool_student";
     protected $primaryKey = "hss_id";
-    protected $fillable = ['sch_year', 'highest_level','sector', 'academic_honor', 'type', 'sl_id', 'last_school'];
+    protected $guarded = [];
+//    protected $fillable = ['sch_year', 'highest_level','sector', 'academic_honor', 'type', 'sl_id', 'last_school'];
 
     public function student()
     {
