@@ -8,6 +8,7 @@ class Address extends Model
 {
     protected $table = "address";
     protected $primaryKey = "add_id";
+    protected $guarded= [];
 
     // public function students()
     // {

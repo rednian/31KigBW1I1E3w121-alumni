@@ -23,7 +23,17 @@ class CompanyController extends Controller
 
     public function visitor()
     {
+        return view('admin.company.visitor');
+    }
 
+    public function all()
+    {
+        return view('admin.company.company');
+    }
+
+    public function companyUpdateMonitor()
+    {
+        return view('admin.company.update');
     }
 
     /**

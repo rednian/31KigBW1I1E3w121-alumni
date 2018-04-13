@@ -8,7 +8,7 @@ class Province extends Model
 {
     protected $table = "prov";
     protected $primaryKey = "province_id";
-    protected $fillable = ['province_name', 'country_id'];
+    protected $guarded = [];
 
     public function country()
     {

@@ -8,7 +8,7 @@ class Region extends Model
 {
     protected $table = "regions";
     protected $primaryKey = "reg_id";
-    protected $fillable = ['region_name', 'country_id'];
+    protected $guarded=[];
 
     public function country()
     {

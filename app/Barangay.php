@@ -8,7 +8,7 @@ class Barangay extends Model
 {
     protected $table = "brgy";
     protected $primaryKey = "brgy_id";
-    protected $fillable = ['brgy_name', 'city_id'];
+    protected $guarded = [];
 
     public function city()
     {
